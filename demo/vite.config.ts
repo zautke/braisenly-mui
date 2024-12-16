@@ -10,4 +10,9 @@ export default defineConfig({
       '@root': path.resolve(__dirname, '../'),
     },
   },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    exclude: ['**/node_modules/**', '**/dist/**', '**/tests/**'],
+  }
 })
