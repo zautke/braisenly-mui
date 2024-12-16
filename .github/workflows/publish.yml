@@ -1,0 +1,126 @@
+name: publish-to-npm
+on:
+  push:
+    branches: [main, development, publish]
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      registry_url:
+        description: 'Optional registry URL override'
+        required: false
+
+permissions:
+  id-token: write
+  contents: write
+  packages: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PNPM_STORE_DIR: .pnpm-store
+  BASE_REF_FALLBACK: origin/main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo (fetch tags & history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.WORKFLOW_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Resolve REGISTRY_URL (dispatch -> secret -> variable -> default)
+        id: resolve-registry
+        run: |
+          set -euo pipefail
+          INPUT_REGISTRY="${{ github.event.inputs.registry_url || '' }}"
+          SECRET_REGISTRY="${{ secrets.REGISTRY_URL || '' }}"
+          VAR_REGISTRY="${{ vars.REGISTRY_URL || '' }}"
+
+          if [ -n "$INPUT_REGISTRY" ]; then
+            REGISTRY="$INPUT_REGISTRY"
+            SOURCE="workflow_dispatch input"
+          elif [ -n "$SECRET_REGISTRY" ]; then
+            REGISTRY="$SECRET_REGISTRY"
+            SOURCE="repository secret"
+          elif [ -n "$VAR_REGISTRY" ]; then
+            REGISTRY="$VAR_REGISTRY"
+            SOURCE="repository variable"
+          else
+            REGISTRY="https://registry.npmjs.org"
+            SOURCE="default fallback"
+          fi
+
+          echo "REGISTRY_URL=$REGISTRY" >> $GITHUB_ENV
+          echo "source=$SOURCE" >> $GITHUB_OUTPUT
+          echo "Resolved REGISTRY_URL=$REGISTRY (source: $SOURCE)"
+        shell: bash
+
+      - name: Verify resolved registry
+        run: |
+          echo "Using REGISTRY_URL=$REGISTRY_URL (resolved from ${{ steps.resolve-registry.outputs.source }})"
+        shell: bash
+
+      - name: Determine pnpm version dynamically
+        id: pnpm-version
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            # Extract lockfileVersion and strip quotes and decimals
+            LOCKFILE_VERSION=$(grep '^lockfileVersion:' pnpm-lock.yaml | head -n 1 | awk '{print $2}' | tr -d '"' | tr -d '"' | cut -d'.' -f1)
+            
+            # Map lockfileVersion to pnpm version
+            # lockfileVersion 9.x requires pnpm 9.x
+            # lockfileVersion 6.x-8.x requires pnpm 8.x
+            case $LOCKFILE_VERSION in
+              9)
+                PNPM_VERSION="9"
+                ;;
+              6|7|8)
+                PNPM_VERSION="8"
+                ;;
+              *)
+                PNPM_VERSION="10"
+                ;;
+            esac
+          else
+            # Fallback to package.json packageManager field
+            PNPM_VERSION=$(node -p "require('./package.json').packageManager.split('@')[1].split('.')[0]" 2>/dev/null || echo "10")
+          fi
+          echo "Detected lockfile version: $LOCKFILE_VERSION, using PNPM version: $PNPM_VERSION"
+          echo "pnpm_version=$PNPM_VERSION" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.pnpm_version }}
+
+      - name: Ensure pnpm store directory exists
+        run: mkdir -p .pnpm-store
+
+      - name: Setup Node.js + pnpm cache
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          registry-url: ${{ env.REGISTRY_URL }}
+          cache: 'pnpm'
+          cache-dependency-path: |
+            pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.WORKFLOW_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Build packages
+        run: pnpm build
+        continue-on-error: false
+
+      - name: Publish to registry
+        run: pnpm publish --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN || secrets.WORKFLOW_TOKEN || secrets.GITHUB_TOKEN }}
