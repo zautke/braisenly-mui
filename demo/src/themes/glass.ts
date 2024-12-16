@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { styleOverrides, palette } from '@braisenly/mui7';
+import { styleOverrides, palette } from '@braisenly/mui';
 
 // Glass/Dark Theme
 export const glassTheme = createTheme({

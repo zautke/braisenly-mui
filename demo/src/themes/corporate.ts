@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { styleOverrides } from '@braisenly/mui7';
+import { styleOverrides } from '@braisenly/mui';
 
 // Corporate/Minimal Theme
 export const corporateTheme = createTheme({

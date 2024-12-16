@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { createTheme } from '@mui/material/styles';
-import { styleOverrides } from '@braisenly/mui7';
+import { styleOverrides } from '@braisenly/mui';
 
 // Evidence-based guarantee:
 // We verify that the critical overrides are actually present in the generated theme object.
