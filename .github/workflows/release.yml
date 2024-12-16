@@ -37,8 +37,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build all packages
-        run: pnpm -r run build
+      - name: Build packages
+        run: |
+          pnpm build
+          pnpm --filter demo build
 
       - name: Create Release Pull Request or Publish
         id: changesets
