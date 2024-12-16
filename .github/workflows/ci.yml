@@ -17,5 +17,6 @@ jobs:
           node-version: 20
           cache: 'pnpm'
       - run: pnpm install
-      - run: pnpm -r build
+      - run: pnpm build
+      - run: pnpm --filter demo build
       - run: pnpm -r test
