@@ -1,6 +1,7 @@
 {
   "name": "@braisenly/mui7",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.28.0",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
