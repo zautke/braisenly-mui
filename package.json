@@ -1,0 +1,27 @@
+{
+  "name": "@my-org/custom-theme",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@mui/material": "^6.0.0",
+    "@mui/icons-material": "^6.0.0",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0",
+    "vitest": "^0.34.0",
+    "vite": "^4.0.0",
+    "jsdom": "^22.0.0",
+    "@fontsource-variable/victor-mono": "^5.0.0"
+  }
+}

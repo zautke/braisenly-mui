@@ -1,0 +1,10 @@
+npm warn Unknown user config "register-projects". This will stop working in the next major version of npm.
+
+> mui-theme-demo@0.0.0 dev
+> vite --port 5173
+
+
+  VITE v4.5.14  ready in 499 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
