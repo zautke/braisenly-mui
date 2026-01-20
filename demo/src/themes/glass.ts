@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { styleOverrides } from '../../../componentOverrides/index'; // Import the overrides object directly
-import palette from '../../../palette';
+import { styleOverrides, palette } from '@braisenly/mui7';
 
 // Glass/Dark Theme
 export const glassTheme = createTheme({
@@ -23,7 +22,7 @@ export const glassTheme = createTheme({
   },
   components: {
     // Merge existing functionality overrides
-    ...Object.keys(styleOverrides).reduce((acc, key) => {
+    ...Object.keys(styleOverrides).reduce((acc: any, key) => {
         // We might want to adjust specific overrides for dark mode here
         // For now, we inherit the structural overrides (like animations)
         acc[key] = styleOverrides[key];

@@ -4,6 +4,10 @@ import defaultPropOverrides from "./defaultProps";
 import { createTheme, Theme, ThemeOptions } from "@mui/material/styles";
 import _ from "lodash";
 
+export { default as palette } from "./palette";
+export { customBaseTheme };
+export { styleOverrides };
+
 const mergeStyleandDefaultPropOverrides = _.merge(
 	styleOverrides,
 	defaultPropOverrides,

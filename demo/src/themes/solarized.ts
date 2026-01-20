@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material/styles';
-import { styleOverrides } from '../../../componentOverrides/index';
+import { styleOverrides } from '@braisenly/mui7';
 
 // Solarized Light Theme
 // Based on Ethan Schoonover's Solarized color scheme

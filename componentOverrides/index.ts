@@ -33,8 +33,9 @@ import table from './table';
 import tabs from './tabs';
 import toolbar from './toolbar';
 import tooltip from './tooltip';
+import { Components, Theme } from '@mui/material/styles';
 
-const allOverrides = {
+const allOverrides: any = {
 	...alert,
     ...autocomplete,
 	...avatar,

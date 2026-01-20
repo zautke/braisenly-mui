@@ -21,7 +21,7 @@ const baseTheme = createTheme({
 });
 
 // Augment with our custom zDepth and other extras
-const theme = {
+const theme: any = {
   ...baseTheme,
   zDepth,
   // Ensure typography matches what's exported from typography.ts if createTheme changed it

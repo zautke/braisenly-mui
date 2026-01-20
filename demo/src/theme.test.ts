@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { createTheme } from '@mui/material/styles';
-import { styleOverrides } from '../../componentOverrides/index';
+import { styleOverrides } from '@braisenly/mui7';
 
 // Evidence-based guarantee:
 // We verify that the critical overrides are actually present in the generated theme object.
@@ -12,7 +12,7 @@ describe('MUI 7 Theme Integrity', () => {
 
   it('should have the Accordion component renamed from ExpansionPanel', () => {
     expect(theme.components?.MuiAccordion).toBeDefined();
-    expect(theme.components?.MuiExpansionPanel).toBeUndefined();
+    expect((theme.components as any)?.MuiExpansionPanel).toBeUndefined();
   });
 
   it('should have modern CSS class selectors in Button overrides', () => {
