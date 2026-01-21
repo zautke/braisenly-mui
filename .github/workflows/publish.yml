@@ -1,7 +1,7 @@
 name: publish-to-npm
 on:
   push:
-    branches: [main, development, publish]
+    branches: [main, development]
   release:
     types: [published]
   workflow_dispatch:
@@ -65,8 +65,39 @@ jobs:
           echo "Using REGISTRY_URL=$REGISTRY_URL (resolved from ${{ steps.resolve-registry.outputs.source }})"
         shell: bash
 
+      - name: Determine pnpm version dynamically
+        id: pnpm-version
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            # Extract lockfileVersion and strip quotes and decimals
+            LOCKFILE_VERSION=$(grep '^lockfileVersion:' pnpm-lock.yaml | head -n 1 | awk '{print $2}' | tr -d '"' | tr -d '"' | cut -d'.' -f1)
+            
+            # Map lockfileVersion to pnpm version
+            # lockfileVersion 9.x requires pnpm 9.x
+            # lockfileVersion 6.x-8.x requires pnpm 8.x
+            case $LOCKFILE_VERSION in
+              9)
+                PNPM_VERSION="9"
+                ;;
+              6|7|8)
+                PNPM_VERSION="8"
+                ;;
+              *)
+                PNPM_VERSION="10"
+                ;;
+            esac
+          else
+            # Fallback to package.json packageManager field
+            PNPM_VERSION=$(node -p "require('./package.json').packageManager.split('@')[1].split('.')[0]" 2>/dev/null || echo "10")
+          fi
+          echo "Detected lockfile version: $LOCKFILE_VERSION, using PNPM version: $PNPM_VERSION"
+          echo "pnpm_version=$PNPM_VERSION" >> $GITHUB_ENV
+        shell: bash
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.pnpm_version }}
 
       - name: Ensure pnpm store directory exists
         run: mkdir -p .pnpm-store
@@ -79,6 +110,8 @@ jobs:
           cache: 'pnpm'
           cache-dependency-path: |
             pnpm-lock.yaml
+            ui/pnpm-lock.yaml
+            design-tokens/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -90,6 +123,6 @@ jobs:
         continue-on-error: false
 
       - name: Publish to registry
-        run: pnpm publish --no-git-checks --access public --provenance
+        run: pnpm publish -r --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN || secrets.WORKFLOW_TOKEN || secrets.GITHUB_TOKEN }}
