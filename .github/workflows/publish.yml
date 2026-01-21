@@ -1,0 +1,95 @@
+name: publish-to-npm
+on:
+  push:
+    branches: [main, development, publish]
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      registry_url:
+        description: 'Optional registry URL override'
+        required: false
+
+permissions:
+  id-token: write
+  contents: write
+  packages: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PNPM_STORE_DIR: .pnpm-store
+  BASE_REF_FALLBACK: origin/main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo (fetch tags & history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.WORKFLOW_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Resolve REGISTRY_URL (dispatch -> secret -> variable -> default)
+        id: resolve-registry
+        run: |
+          set -euo pipefail
+          INPUT_REGISTRY="${{ github.event.inputs.registry_url || '' }}"
+          SECRET_REGISTRY="${{ secrets.REGISTRY_URL || '' }}"
+          VAR_REGISTRY="${{ vars.REGISTRY_URL || '' }}"
+
+          if [ -n "$INPUT_REGISTRY" ]; then
+            REGISTRY="$INPUT_REGISTRY"
+            SOURCE="workflow_dispatch input"
+          elif [ -n "$SECRET_REGISTRY" ]; then
+            REGISTRY="$SECRET_REGISTRY"
+            SOURCE="repository secret"
+          elif [ -n "$VAR_REGISTRY" ]; then
+            REGISTRY="$VAR_REGISTRY"
+            SOURCE="repository variable"
+          else
+            REGISTRY="https://registry.npmjs.org"
+            SOURCE="default fallback"
+          fi
+
+          echo "REGISTRY_URL=$REGISTRY" >> $GITHUB_ENV
+          echo "source=$SOURCE" >> $GITHUB_OUTPUT
+          echo "Resolved REGISTRY_URL=$REGISTRY (source: $SOURCE)"
+        shell: bash
+
+      - name: Verify resolved registry
+        run: |
+          echo "Using REGISTRY_URL=$REGISTRY_URL (resolved from ${{ steps.resolve-registry.outputs.source }})"
+        shell: bash
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Ensure pnpm store directory exists
+        run: mkdir -p .pnpm-store
+
+      - name: Setup Node.js + pnpm cache
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          registry-url: ${{ env.REGISTRY_URL }}
+          cache: 'pnpm'
+          cache-dependency-path: |
+            pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.WORKFLOW_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Build packages
+        run: pnpm build
+        continue-on-error: false
+
+      - name: Publish to registry
+        run: pnpm publish --no-git-checks --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN || secrets.WORKFLOW_TOKEN || secrets.GITHUB_TOKEN }}
