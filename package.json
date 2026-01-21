@@ -1,6 +1,6 @@
 {
   "name": "@braisenly/mui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "packageManager": "pnpm@10.28.0",
   "repository": {
     "type": "git",
@@ -27,7 +27,14 @@
   "scripts": {
     "test": "vitest",
     "build": "tsup index.ts --format cjs,esm --dts",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "changeset": "changeset",
+    "version:bump": "changeset version",
+    "commit:release": "bash scripts/commit-release.sh",
+    "tag:version": "node -p \"require('./package.json').version\" | xargs -I % git tag v%",
+    "tag:push": "node -p \"require('./package.json').version\" | xargs -I % git push origin v%",
+    "publish:public": "bash scripts/publish-public.sh",
+    "release": "pnpm run changeset && pnpm run version:bump && pnpm run commit:release && pnpm run tag:version && pnpm run tag:push && pnpm run publish:public"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
