@@ -4,11 +4,15 @@ set -euo pipefail
 
 version=$(node -p "require('./package.json').version")
 branch=$(git rev-parse --abbrev-ref HEAD)
+otp="${NPM_CONFIG_OTP:-${PNPM_OTP:-${NPM_OTP:-}}}"
 output_file=$(mktemp)
 publish_args=(--access public)
 
 if [ "$branch" != "HEAD" ]; then
   publish_args+=(--publish-branch "$branch")
+fi
+if [ -n "$otp" ]; then
+  publish_args+=(--otp "$otp")
 fi
 
 set +e

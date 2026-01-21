@@ -103,7 +103,7 @@ jobs:
         run: mkdir -p .pnpm-store
 
       - name: Setup Node.js + pnpm cache
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           registry-url: ${{ env.REGISTRY_URL }}
@@ -112,6 +112,9 @@ jobs:
             pnpm-lock.yaml
             ui/pnpm-lock.yaml
             design-tokens/pnpm-lock.yaml
+
+      - name: Ensure npm supports trusted publishing
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -122,7 +125,5 @@ jobs:
         run: pnpm build
         continue-on-error: false
 
-      - name: Publish to registry
-        run: pnpm publish -r --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN || secrets.WORKFLOW_TOKEN || secrets.GITHUB_TOKEN }}
+      - name: Publish to registry (OIDC trusted publishing)
+        run: npm publish --access public
