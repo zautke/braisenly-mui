@@ -3,10 +3,16 @@
 set -euo pipefail
 
 version=$(node -p "require('./package.json').version")
+branch=$(git rev-parse --abbrev-ref HEAD)
 output_file=$(mktemp)
+publish_args=(--access public)
+
+if [ "$branch" != "HEAD" ]; then
+  publish_args+=(--publish-branch "$branch")
+fi
 
 set +e
-pnpm publish --access public 2>&1 | tee "$output_file"
+pnpm publish "${publish_args[@]}" 2>&1 | tee "$output_file"
 publish_status=${PIPESTATUS[0]}
 set -e
 
@@ -16,7 +22,7 @@ if [ "$publish_status" -ne 0 ]; then
       git add -A
       git commit -m "chore(release): v${version}"
     fi
-    pnpm publish --access public
+    pnpm publish "${publish_args[@]}"
   else
     exit "$publish_status"
   fi
