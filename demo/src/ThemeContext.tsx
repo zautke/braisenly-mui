@@ -6,8 +6,17 @@ import { baseTheme } from './themes/base';
 import { glassTheme } from './themes/glass';
 import { corporateTheme } from './themes/corporate';
 import { solarizedTheme } from './themes/solarized';
+import { terracottaTheme } from './themes/terracotta';
+import { terracottaDarkTheme } from './themes/terracottaDark';
 
-export type ThemeName = 'mui-default' | 'base' | 'glass' | 'corporate' | 'solarized';
+export type ThemeName =
+  | 'mui-default'
+  | 'base'
+  | 'glass'
+  | 'corporate'
+  | 'solarized'
+  | 'terracotta'
+  | 'terracotta-dark';
 
 interface ThemeContextType {
   currentTheme: ThemeName;
@@ -27,6 +36,8 @@ export const ThemeProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ 
       case 'glass': return glassTheme;
       case 'corporate': return corporateTheme;
       case 'solarized': return solarizedTheme;
+      case 'terracotta': return terracottaTheme;
+      case 'terracotta-dark': return terracottaDarkTheme;
       case 'base': default: return baseTheme;
     }
   }, [themeName]);

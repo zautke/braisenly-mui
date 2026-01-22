@@ -28,6 +28,8 @@ const ThemeControls = () => {
           <MenuItem value="glass">Glass (Dark)</MenuItem>
           <MenuItem value="corporate">Corporate (Light)</MenuItem>
           <MenuItem value="solarized">Solarized (Light)</MenuItem>
+          <MenuItem value="terracotta">Terracotta (Light)</MenuItem>
+          <MenuItem value="terracotta-dark">Terracotta (Dark)</MenuItem>
         </Select>
       </FormControl>
     </Box>
