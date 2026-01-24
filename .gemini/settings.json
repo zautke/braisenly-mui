@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "nextjs-tools": {
+      "command": "bash",
+      "args": [
+        "-c",
+        "npx -y @michaelfatigati/mcp-server-nextjs-tools"
+      ]
+    }
+  }
+}

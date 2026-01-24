@@ -1,29 +1,33 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Table Overrides
+ *
+ * Pattern Reference: MUI v7 Table.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Table/Table.js
+ */
 
 const MuiTableRow = {
   styleOverrides: {
-    root: {
-      backgroundColor: theme.palette.common.white,
-      // Bleeding edge: Scale and highlight on hover
-      transition: 'transform 0.15s ease, background-color 0.15s ease',
+    root: ({ theme }) => ({
+      backgroundColor: (theme.vars || theme).palette.background.paper,
+      transition: theme.transitions.create(['transform', 'background-color'], { duration: 150 }),
       
       '&.Mui-selected': {
-        backgroundColor: theme.palette.action.selected,
+        backgroundColor: (theme.vars || theme).palette.action.selected,
         '&:hover': {
-            backgroundColor: theme.palette.action.selected,
+            backgroundColor: (theme.vars || theme).palette.action.selected,
         }
       },
       '&:hover': {
-        backgroundColor: theme.palette.action.hover, // gray1 replacement
-        transform: 'scale(1.002)', // Very subtle scale to avoid layout shift issues
+        backgroundColor: (theme.vars || theme).palette.action.hover,
+        transform: 'scale(1.002)',
         position: 'relative',
         zIndex: 1,
-        boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+        boxShadow: (theme.vars || theme).shadows[1],
       },
-    },
+    }),
     head: {
         '&:hover': {
-            backgroundColor: 'inherit', // Disable hover on header
+            backgroundColor: 'inherit',
             transform: 'none',
             boxShadow: 'none',
         }
@@ -33,62 +37,61 @@ const MuiTableRow = {
 
 const MuiTableCell = {
   styleOverrides: {
-    root: {
-      padding: `${theme.spacing(2)}px ${theme.spacing(3)}px`, 
+    root: ({ theme }) => ({
+      padding: theme.spacing(2, 3), 
       '&:last-child': {
         paddingRight: theme.spacing(3),
       },
-    },
-    body: {
-      ...theme.typography.regular,
-    },
-    head: {
-      ...theme.typography.label,
+    }),
+    body: ({ theme }) => ({
+      ...theme.typography.body2,
+    }),
+    head: ({ theme }) => ({
+      ...theme.typography.subtitle2,
       fontWeight: theme.typography.fontWeightBold,
-    },
+    }),
   }
 };
 
 const MuiTableSortLabel = {
   styleOverrides: {
-    root: {
+    root: ({ theme }) => ({
       '&.Mui-active': {
-        color: theme.palette.primary.main,
+        color: (theme.vars || theme).palette.primary.main,
       },
-    },
+    }),
   }
 };
 
 const MuiTablePagination = {
   styleOverrides: {
-    root: {
-      ...theme.typography.regular,
-    },
-    // 'caption' and 'input' etc are often inside classes key or targeted via slots in v7
-    selectLabel: {
-        ...theme.typography.regular,
-    },
-    displayedRows: {
-        ...theme.typography.regular,
-    },
-    select: {
+    root: ({ theme }) => ({
+      ...theme.typography.body2,
+    }),
+    selectLabel: ({ theme }) => ({
+      ...theme.typography.body2,
+    }),
+    displayedRows: ({ theme }) => ({
+      ...theme.typography.body2,
+    }),
+    select: ({ theme }) => ({
       minWidth: 0,
       paddingLeft: theme.spacing(0.5),
       paddingRight: theme.spacing(3) + '!important', 
-    },
-    selectIcon: {
-      top: 'calc(50% - 12px)', // center vertically
-      color: theme.palette.action.active,
+    }),
+    selectIcon: ({ theme }) => ({
+      top: 'calc(50% - 12px)',
+      color: (theme.vars || theme).palette.action.active,
       width: 24,
       height: 24,
-    },
+    }),
     actions: {
       '& .MuiIconButton-root': {
           padding: 8,
           '& svg': {
             width: 20,
             height: 20,
-            color: theme.palette.action.active,
+            color: 'inherit',
           }
       }
     },

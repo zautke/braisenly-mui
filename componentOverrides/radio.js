@@ -1,53 +1,49 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Radio Overrides
+ *
+ * Pattern Reference: MUI v7 Radio.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Radio/Radio.js
+ */
 
 const MuiRadio = {
   styleOverrides: {
-    root: {
-      color: theme.palette.colorGuide['grey-04'],
+    root: ({ theme }) => ({
+      color: (theme.vars || theme).palette.text.secondary,
       backgroundColor: 'transparent',
-      padding: 9, // Standardize touch target
+      padding: 9,
 
       '&:hover': {
-        color: theme.palette.colorGuide['blue-hover'],
-        backgroundColor: 'transparent',
+        color: (theme.vars || theme).palette.action.hover,
+        backgroundColor: (theme.vars || theme).palette.action.hover,
       },
 
       '&:active': {
-        color: theme.palette.colorGuide['blue-pressed'],
+        color: (theme.vars || theme).palette.action.selected,
       },
 
       '& .MuiSvgIcon-root': {
         fontSize: 16,
-        transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', // Bouncy transition
+        transition: theme.transitions.create('transform', { duration: 300 }),
         transform: 'scale(1)',
-        
-        // Target the inner circle if possible, or just scale the whole icon
-        '& circle': {
-            transition: 'r 0.3s ease-in-out',
-        }
       },
 
       '&.Mui-checked': {
-        color: theme.palette.primary.main,
+        color: (theme.vars || theme).palette.primary.main,
         backgroundColor: 'transparent',
 
         '& .MuiSvgIcon-root': {
-            transform: 'scale(1.2)', // "Bleeding edge" scale effect
+            transform: 'scale(1.2)', 
         },
 
         '&:hover': {
-          color: theme.palette.colorGuide['blue-hover'],
-        },
-        '&:active': {
-          color: theme.palette.colorGuide['blue-pressed'],
+          color: (theme.vars || theme).palette.primary.dark,
         },
       },
 
       '&.Mui-disabled': {
-        color: theme.palette.colorGuide['grey-04'],
-        backgroundColor: 'transparent',
+        color: (theme.vars || theme).palette.action.disabled,
       },
-    },
+    }),
   },
 };
 

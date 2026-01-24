@@ -1,28 +1,31 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Progress Overrides
+ *
+ * Pattern Reference: MUI v7 Progress.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/CircularProgress/CircularProgress.js
+ */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiCircularProgress = {
+const MuiCircularProgress: Components<Theme>['MuiCircularProgress'] = {
   styleOverrides: {
-    root: {
-      color: theme.palette.primary.main,
-    },
-    circle: {
-      // Custom animation tuning if needed
-    }
-  }
+    root: ({ theme }: { theme: Theme }) => ({
+      color: (theme.vars || theme).palette.primary.main,
+    }),
+  },
 };
 
-const MuiLinearProgress = {
+const MuiLinearProgress: Components<Theme>['MuiLinearProgress'] = {
   styleOverrides: {
-    root: {
-      borderRadius: 4,
+    root: ({ theme }: { theme: Theme }) => ({
+      borderRadius: (theme.vars || theme).shape.borderRadius,
       height: 6,
-      backgroundColor: theme.palette.colorGuide['grey-02'],
-    },
-    bar: {
-      borderRadius: 4,
-      backgroundColor: theme.palette.primary.main,
-    }
-  }
+      backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+    }),
+    bar: ({ theme }: { theme: Theme }) => ({
+      borderRadius: (theme.vars || theme).shape.borderRadius,
+      backgroundColor: (theme.vars || theme).palette.primary.main,
+    }),
+  },
 };
 
 export default {

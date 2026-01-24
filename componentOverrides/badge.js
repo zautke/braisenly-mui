@@ -1,33 +1,33 @@
-import theme from '../themeStub';
-
-const RADIUS = 8; 
+/**
+ * Theme-Agnostic Badge Overrides
+ *
+ * Pattern Reference: MUI v7 Badge.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Badge/Badge.js
+ */
 
 const MuiBadge = {
   styleOverrides: {
-    badge: {
-      top: -RADIUS + 2, 
-      right: -RADIUS , 
-      width: RADIUS * 2,
-      height: RADIUS * 2,
-
-      ...theme.typography.smallSemibold,
+    badge: ({ theme }) => ({
+      top: 0,
+      right: 0,
+      
+      // Use standard typography
+      ...theme.typography.caption,
+      fontWeight: theme.typography.fontWeightBold,
       fontSize: 10.4,
-      ...theme.palette.common.white,
       lineHeight: 'normal',
       textAlign: 'center',
       
-      // Bleeding edge: Pulse animation for attention
-      animation: 'mui-badge-pulse 2s infinite',
+      // Colors from theme
+      color: (theme.vars || theme).palette.common.white,
       
-      // Note: keyframes need to be defined globally. 
-      // Ideally, we'd inject GlobalStyles, but assuming app-level CSS handles 'mui-badge-pulse'
-      // Example keyframe:
-      // @keyframes mui-badge-pulse {
-      //   0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
-      //   70% { box-shadow: 0 0 0 6px rgba(255, 0, 0, 0); }
-      //   100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-      // }
-    },
+      // Note: background color usually set by 'color' prop (primary/secondary),
+      // but if we need a custom default:
+      // backgroundColor: (theme.vars || theme).palette.primary.main,
+      
+      // Pulse animation if defined globally
+      animation: 'mui-badge-pulse 2s infinite',
+    }),
   },
 };
 

@@ -1,19 +1,22 @@
-import { convertCompilerOptionsFromJson } from 'typescript'
-import theme from '../themeStub'
-import { ClassNameMap } from '@mui/material'
+/**
+ * Theme-Agnostic Input Overrides
+ *
+ * Pattern Reference: MUI v7 Input.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Input/Input.js
+ */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiInput = {
+const MuiInput: Components<Theme>['MuiInput'] = {
   styleOverrides: {
-    root: {
-      //...theme.typography.inputTypedText,
-      border: '1px solid ' + theme.palette.colorGuide['grey-04'],
-      borderRadius: 3,
+    root: ({ theme }: { theme: Theme }) => ({
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      borderRadius: (theme.vars || theme).shape.borderRadius,
 
       '&.Mui-focused:not(.Mui-disabled):not(.Mui-error)': {
-        border: '1px solid ' + theme.palette.colorGuide['grey-05'],
+        border: `1px solid ${(theme.vars || theme).palette.text.secondary}`,
       },
       '&:hover:not(.Mui-disabled):not(.Mui-error)': {
-        border: '1px solid ' + theme.palette.colorGuide['grey-05'],
+        border: `1px solid ${(theme.vars || theme).palette.text.secondary}`,
       },
       '&.MuiTablePagination-input:hover:not(.Mui-disabled):not(.Mui-error)': {
         border: 'none',
@@ -21,71 +24,51 @@ const MuiInput = {
       '&.Mui-focused.MuiTablePagination-input:not(.Mui-disabled):not(.Mui-error)': {
         border: 'none',
       },
-    },
-    '&.Mui-disabled': {
-      'backgroundColor': theme.palette.colorGuide['grey-02'],
-      'border': '1px solid ' + theme.palette.colorGuide['grey-03'],
-      '& svg': {
-        color: theme.palette.colorGuide['grey-04'],
-      }
-    },
-    '&.Mui-error': {
-      'border': '1px solid ' + theme.palette.error.main,
-
-      '&.Mui-focused': {
-        backgroundColor: theme.palette.colorGuide['grey-01'],
+      '&.Mui-disabled': {
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+        border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
+        '& svg': {
+          color: (theme.vars || theme).palette.action.disabled,
+        }
       },
-    },
+      '&.Mui-error': {
+        border: `1px solid ${(theme.vars || theme).palette.error.main}`,
+        '&.Mui-focused': {
+          backgroundColor: (theme.vars || theme).palette.action.hover,
+        },
+      },
+    }),
     input: {
       padding: '5px 8px',
-
-      '&::placeholder': {
-        //...theme.typography.inputPlaceholder,
-      },
     },
-    inputType: {
-      height: 'auto',
-    },
-    inputTypeSearch: {
+    inputTypeSearch: ({ theme }: { theme: Theme }) => ({
       '&::-webkit-search-cancel-button': {
         fontSize: 16,
       },
-
-      // when an adjacent sibling to a MuiInputAdornment-positionStart class, assume a like background
       'div[class*="MuiInputAdornment-positionStart"] + &': {
-        backgroundColor: theme.palette.colorGuide['grey-02'],
+        backgroundColor: (theme.vars || theme).palette.action.hover,
       },
-    },
+    }),
   },
 }
 
-const MuiInputAdornment = {
+const MuiInputAdornment: Components<Theme>['MuiInputAdornment'] = {
   styleOverrides: {
     root: {
       maxHeight: 'auto'
     },
-    positionStart: {
+    positionStart: ({ theme }: { theme: Theme }) => ({
       marginRight: 0,
-      padding: '2px 8px 2px 8px',
-      backgroundColor: theme.palette.colorGuide['grey-02'],
-      '& > svg': {
-        //color: theme.palette.colorGuide['grey-05'],
-      },
-    },
+      padding: theme.spacing(0.25, 1),
+      backgroundColor: (theme.vars || theme).palette.action.hover,
+    }),
   },
 }
 
-const MuiInputLabel = {
+const MuiInputLabel: Components<Theme>['MuiInputLabel'] = {
   styleOverrides: {
     formControl: {
-      // retaining the native relative-absolute parent/child scheme, mimic left-padding
       left: 8,
-      //transform: 'translate(0, 0px) scale(1)', // reset from default: 'translate(0, 24px) scale(1)',
-      //...theme.typography.inputLabel,
-    },
-    shrink: {
-      //transform: 'translate(-8px, -4px) ', // default: 'translate(0, 1.5px) scale(0.75)'
-      //...theme.typography.inputLabel,
     },
   },
 }

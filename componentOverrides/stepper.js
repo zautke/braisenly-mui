@@ -1,51 +1,57 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Stepper Overrides
+ *
+ * Pattern Reference: MUI v7 Stepper.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Stepper/Stepper.js
+ */
 
 const MuiStepper = {
   styleOverrides: {
-    root: {
+    root: ({ theme }) => ({
       width: '100%',
-      borderBottom: '1px solid ' + theme.palette.colorGuide['grey-03'],
-      padding: 14,
-    }
-  }
+      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+      padding: theme.spacing(1.75),
+    }),
+  },
 };
 
 const MuiStepIcon = {
   styleOverrides: {
-    root: {
+    root: ({ theme }) => ({
       fontSize: 18,
-      transition: 'color 0.3s ease, transform 0.3s ease',
+      transition: theme.transitions.create(['color', 'transform'], { duration: 300 }),
       
       '&.Mui-active': {
-        color: theme.palette.primary.main,
-        transform: 'scale(1.2)', // Pulse effect on active step
+        color: (theme.vars || theme).palette.primary.main,
+        transform: 'scale(1.2)',
       },
       '&.Mui-completed': {
-        color: theme.palette.primary.main,
+        color: (theme.vars || theme).palette.primary.main,
       },
-    },
-    text: {
-        ...theme.typography.barlowFont,
-    },
-  }
+    }),
+    text: ({ theme }) => ({
+      // Font family from theme
+      fontFamily: theme.typography.fontFamily,
+    }),
+  },
 };
 
 const MuiStepLabel = {
   styleOverrides: {
-    label: {
-      ...theme.typography.regular,
-      transition: 'font-weight 0.2s ease, color 0.2s ease',
+    label: ({ theme }) => ({
+      ...theme.typography.body2,
+      transition: theme.transitions.create(['font-weight', 'color'], { duration: 200 }),
 
       '&.Mui-completed': {
-        ...theme.typography.regularSemibold,
-        color: theme.palette.text.primary,
+        fontWeight: theme.typography.fontWeightMedium,
+        color: (theme.vars || theme).palette.text.primary,
       },
       '&.Mui-active': {
-        ...theme.typography.regularSemibold,
-        color: theme.palette.primary.main,
+        fontWeight: theme.typography.fontWeightMedium,
+        color: (theme.vars || theme).palette.primary.main,
       },
-    }
-  }
+    }),
+  },
 };
 
 export default {

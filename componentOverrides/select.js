@@ -1,31 +1,32 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Select Overrides
+ *
+ * Pattern Reference: MUI v7 Select.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Select/Select.js
+ */
 
 const MuiSelect = {
   styleOverrides: {
-    root: {
-      // Base Select styles often applied to the InputBase-root or similar.
-      // In MUI 7, we target specific slots or use variants.
-    },
-    select: {
+    select: ({ theme }) => ({
       border: 'none',
-      backgroundColor: theme.palette.colorGuide['grey-02'],
+      backgroundColor: (theme.vars || theme).palette.action.selected,
       '&:focus': {
-        backgroundColor: theme.palette.colorGuide['grey-02'], // Prevent default grey background on focus
+        backgroundColor: (theme.vars || theme).palette.action.selected,
       },
       
       '&.Mui-disabled': {
-        backgroundColor: theme.palette.colorGuide['grey-02'],
-        color: theme.palette.common.white, // Assuming text color change on disabled
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
+        color: (theme.vars || theme).palette.text.disabled,
       },
-    },
-    icon: {
-      color: theme.palette.colorGuide['grey-03'],
+    }),
+    icon: ({ theme }) => ({
+      color: (theme.vars || theme).palette.text.secondary,
       width: 22,
       height: 'auto',
-      right: 7, // Adjust position
+      right: 7,
       position: 'absolute',
-      pointerEvents: 'none', // Ensure click passes through
-    },
+      pointerEvents: 'none',
+    }),
   },
 };
 

@@ -1,39 +1,42 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Menu Overrides
+ *
+ * Pattern Reference: MUI v7 Menu.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Menu/Menu.js
+ */
 
 const MuiMenu = {
   styleOverrides: {
-    paper: {
+    paper: ({ theme }) => ({
       padding: 0,
-      // Add a subtle entrance animation for the menu paper
       animation: 'mui-menu-enter 0.2s ease-out',
       transformOrigin: 'top left',
-    },
+    }),
   },
 };
 
 const MuiMenuItem = {
   styleOverrides: {
-    root: {
-      ...theme.typography.regular,
-      paddingRight: 12,
-      paddingLeft: 12,
-      transition: 'background-color 0.15s ease, color 0.15s ease',
+    root: ({ theme }) => ({
+      ...theme.typography.body2,
+      paddingRight: theme.spacing(1.5),
+      paddingLeft: theme.spacing(1.5),
+      transition: theme.transitions.create(['background-color', 'color'], { duration: 150 }),
       
       '&:hover': {
-        backgroundColor: theme.palette.action.hover, 
+        backgroundColor: (theme.vars || theme).palette.action.hover,
       },
 
       '&.Mui-selected': {
-        ...theme.typography.regularSemibold,
-        backgroundColor: 'transparent', // As per original design, keeps transparent on select?
-        // Usually you'd want some visual indication, but adhering to legacy override:
-        color: theme.palette.primary.main, 
+        fontWeight: theme.typography.fontWeightMedium,
+        backgroundColor: (theme.vars || theme).palette.action.selected,
+        color: (theme.vars || theme).palette.primary.main,
         
         '&:hover': {
-             backgroundColor: theme.palette.action.hover,
+             backgroundColor: (theme.vars || theme).palette.action.selected,
         }
       },
-    },
+    }),
   },
 };
 

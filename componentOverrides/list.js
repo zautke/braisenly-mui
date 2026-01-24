@@ -1,100 +1,98 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic List Overrides
+ *
+ * Pattern Reference: MUI v7 List.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/List/List.js
+ */
 
 const MuiList = {
   styleOverrides: {
-    padding: {
-      paddingTop: 4,
-      paddingBottom: 4,
-    },
+    padding: ({ theme }) => ({
+      paddingTop: theme.spacing(0.5),
+      paddingBottom: theme.spacing(0.5),
+    }),
   },
 };
 
 const MuiListItem = {
   styleOverrides: {
-    root: {
-      // Add subtle transition for hover effects
-      transition: 'background-color 0.15s ease',
+    root: ({ theme }) => ({
+      transition: theme.transitions.create('background-color', { duration: 150 }),
       '&:hover': {
-        backgroundColor: theme.palette.colorGuide['grey-01'], // Fallback if '' was empty
+        backgroundColor: (theme.vars || theme).palette.action.hover,
       },
-    },
-    // 'button' prop maps to MuiListItemButton usually, or .MuiListItem-button class in older versions.
-    // In v7, <ListItem button> is deprecated in favor of <ListItemButton>.
-    // We should style MuiListItemButton if that's what is being used, but for MuiListItem:
-    gutters: {
+    }),
+    gutters: ({ theme }) => ({
       [theme.breakpoints.up('sm')]: {
-        paddingLeft: 12,
-        paddingRight: 12,
-      }
-    },
+        paddingLeft: theme.spacing(1.5),
+        paddingRight: theme.spacing(1.5),
+      },
+    }),
   },
 };
 
-// Also overriding ListItemButton for compatibility with newer patterns
 const MuiListItemButton = {
   styleOverrides: {
-    root: {
-      transition: 'background-color 0.15s ease',
+    root: ({ theme }) => ({
+      transition: theme.transitions.create('background-color', { duration: 150 }),
       '&:hover': {
-        backgroundColor: theme.palette.colorGuide['grey-01'],
+        backgroundColor: (theme.vars || theme).palette.action.hover,
       },
-      paddingTop: 6,
-      paddingBottom: 6,
+      paddingTop: theme.spacing(0.75),
+      paddingBottom: theme.spacing(0.75),
       [theme.breakpoints.up('sm')]: {
-        paddingLeft: 12,
-        paddingRight: 12,
-      }
-    }
-  }
+        paddingLeft: theme.spacing(1.5),
+        paddingRight: theme.spacing(1.5),
+      },
+    }),
+  },
 };
 
 const MuiListItemText = {
   styleOverrides: {
-    root: {
+    root: ({ theme }) => ({
       paddingRight: 0,
-      paddingLeft: 12,
-      // Target first-child logic if needed, but flexbox usually handles this better.
-      // '&:first-of-type' might be safer than ':first-child' if purely structural.
+      paddingLeft: theme.spacing(1.5),
       '&:first-of-type': { 
         paddingLeft: 0,
         paddingRight: 0,
-        ...theme.typography.regular,
+        ...theme.typography.body2,
       },
-    },
-    primary: {
-      ...theme.typography.regular,
-      color: theme.palette.text.primary, // 'interface' was empty
-    },
-    secondary: {
-      ...theme.typography.small,
-    }
+    }),
+    primary: ({ theme }) => ({
+      ...theme.typography.body2,
+      color: (theme.vars || theme).palette.text.primary,
+    }),
+    secondary: ({ theme }) => ({
+      ...theme.typography.caption,
+    })
   }
 };
 
 const MuiListItemIcon = {
   styleOverrides: {
-    root: {
+    root: ({ theme }) => ({
       marginRight: 0,
-      color: theme.palette.action.active,
+      color: (theme.vars || theme).palette.action.active,
       height: 15,
       width: 15,
       '&:first-of-type': {
         paddingRight: 0,
       },
-    }
+    }),
   }
 };
 
 const MuiListSubheader = {
   styleOverrides: {
-    root: {
+    root: ({ theme }) => ({
       [theme.breakpoints.up('sm')]: {
-        paddingTop: `${theme.spacing.unit * 3}px`,
-        paddingBottom: `${theme.spacing.unit * 2}px`,
-        paddingLeft: 12,
-        paddingRight: 12,
+        paddingTop: theme.spacing(3),
+        paddingBottom: theme.spacing(2),
+        paddingLeft: theme.spacing(1.5),
+        paddingRight: theme.spacing(1.5),
       }
-    }
+    }),
   }
 }
 

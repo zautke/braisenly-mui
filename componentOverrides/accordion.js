@@ -1,61 +1,68 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Accordion Overrides
+ *
+ * Pattern Reference: MUI v7 Accordion.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Accordion/Accordion.js
+ */
 
 const MuiAccordion = {
   styleOverrides: {
-    root: {
-        '&.Mui-disabled': {
-            backgroundColor: theme.palette.colorGuide['white'],
-        }
-    },
-  }
+    root: ({ theme }) => ({
+      '&.Mui-disabled': {
+        backgroundColor: (theme.vars || theme).palette.background.paper,
+      },
+      '&:before': {
+        backgroundColor: (theme.vars || theme).palette.divider,
+      },
+    }),
+  },
 };
 
 const MuiAccordionSummary = {
   styleOverrides: {
-    root: {
-      padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 6}px ${theme.spacing.unit * 4}px ${theme.spacing.unit * 10}px`,
-      minHeight: 12,
+    root: ({ theme }) => ({
+      padding: theme.spacing(1.5, 2, 1.5, 3),
+      minHeight: 48,
+      
       '&.Mui-disabled': {
         opacity: 1,
       },
       '&.Mui-expanded': {
-        minHeight: 24,
-        borderBottom: '1px solid ' + theme.palette.colorGuide['grey-03'],
+        minHeight: 64,
+        borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
       },
       '&:hover:not(.Mui-expanded)': {
-        backgroundColor: theme.palette.colorGuide['grey-01'],
+        backgroundColor: (theme.vars || theme).palette.action.hover,
       },
-    },
+    }),
     content: {
       margin: 0,
       '&.Mui-expanded': {
         margin: 0,
       },
     },
-    expandIconWrapper: {
-      left: 0,
-      color: theme.palette.colorGuide['blue-base'],
+    expandIconWrapper: ({ theme }) => ({
+      color: (theme.vars || theme).palette.primary.main,
       '&.Mui-expanded': {
-        transform: 'translateY(-50%) rotate(90deg)',
-      }
-    },
+        transform: 'rotate(90deg)',
+      },
+    }),
   },
 };
 
 const MuiAccordionDetails = {
   styleOverrides: {
-    root: {
-      padding: `${theme.spacing.unit * 4}px ${theme.spacing.unit * 6}px ${theme.spacing.unit * 5}px ${theme.spacing.unit * 6}px`,
-    },
+    root: ({ theme }) => ({
+      padding: theme.spacing(2, 3),
+    }),
   },
 };
 
 const MuiAccordionActions = {
   styleOverrides: {
-    root: {
-      paddingLeft: '16px',
-      paddingRight: '16px',
-    },
+    root: ({ theme }) => ({
+      padding: theme.spacing(2),
+    }),
   },
 };
 

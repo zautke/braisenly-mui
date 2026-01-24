@@ -9,7 +9,8 @@ export type ThemeVariantType = 'standard' | 'glass' | 'neuromancer' | 'cardboard
 
 declare module '@mui/material/styles' {
   interface Theme {
-    themeVariant: ThemeVariantType;
+    themeVariant?: ThemeVariantType;
+    vars?: any;
   }
   interface ThemeOptions {
     themeVariant?: ThemeVariantType;
@@ -145,11 +146,11 @@ export const applyThemeVariant = (theme: Theme, variant: ThemeVariantType = 'sta
         theme.components![cmp] = {};
       }
       // Merge styleOverrides
-      const existing = theme.components![cmp]?.styleOverrides || {};
-      const incoming = variantOverrides[cmp]?.styleOverrides || {};
+      const existing = (theme.components![cmp] as any)?.styleOverrides || {};
+      const incoming = (variantOverrides[cmp] as any)?.styleOverrides || {};
       
       // We overwrite for now to enforce the variant
-      theme.components![cmp]!.styleOverrides = { ...existing, ...incoming };
+      (theme.components![cmp] as any).styleOverrides = { ...existing, ...incoming };
     });
   }
 

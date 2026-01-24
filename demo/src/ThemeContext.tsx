@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, useMemo } from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import React, { createContext, useContext, useState, useMemo, useEffect } from 'react';
+import { ThemeProvider as MuiThemeProvider, Theme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { muiDefaultTheme } from './themes/muiDefault';
 import { baseTheme } from './themes/base';
@@ -8,6 +8,7 @@ import { corporateTheme } from './themes/corporate';
 import { solarizedTheme } from './themes/solarized';
 import { terracottaTheme } from './themes/terracotta';
 import { terracottaDarkTheme } from './themes/terracottaDark';
+import { ThemeEditorProvider, useThemeEditor } from './ThemeEditorContext';
 
 export type ThemeName =
   | 'mui-default'
@@ -21,33 +22,53 @@ export type ThemeName =
 interface ThemeContextType {
   currentTheme: ThemeName;
   setTheme: (name: ThemeName) => void;
+  baseTheme: Theme;
 }
 
-const ThemeContext = createContext<ThemeContextType>({ currentTheme: 'base', setTheme: () => {} });
+const ThemeContext = createContext<ThemeContextType>({
+  currentTheme: 'solarized',
+  setTheme: () => {},
+  baseTheme: solarizedTheme,
+});
 
 export const useThemeSwitcher = () => useContext(ThemeContext);
 
-export const ThemeProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [themeName, setThemeName] = useState<ThemeName>('base');
+const getThemeByName = (name: ThemeName): Theme => {
+  switch (name) {
+    case 'mui-default': return muiDefaultTheme;
+    case 'glass': return glassTheme;
+    case 'corporate': return corporateTheme;
+    case 'solarized': return solarizedTheme;
+    case 'terracotta': return terracottaTheme;
+    case 'terracotta-dark': return terracottaDarkTheme;
+    case 'base': default: return baseTheme;
+  }
+};
 
-  const theme = useMemo(() => {
-    switch (themeName) {
-      case 'mui-default': return muiDefaultTheme;
-      case 'glass': return glassTheme;
-      case 'corporate': return corporateTheme;
-      case 'solarized': return solarizedTheme;
-      case 'terracotta': return terracottaTheme;
-      case 'terracotta-dark': return terracottaDarkTheme;
-      case 'base': default: return baseTheme;
-    }
-  }, [themeName]);
+// Inner component that uses the theme editor context
+const ThemeApplier: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { customTheme } = useThemeEditor();
 
   return (
-    <ThemeContext.Provider value={{ currentTheme: themeName, setTheme: setThemeName }}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
-      </MuiThemeProvider>
+    <MuiThemeProvider theme={customTheme}>
+      <CssBaseline />
+      {children}
+    </MuiThemeProvider>
+  );
+};
+
+export const ThemeProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [themeName, setThemeName] = useState<ThemeName>('solarized');
+
+  const baseTheme = useMemo(() => getThemeByName(themeName), [themeName]);
+
+  return (
+    <ThemeContext.Provider value={{ currentTheme: themeName, setTheme: setThemeName, baseTheme }}>
+      <ThemeEditorProvider baseTheme={baseTheme}>
+        <ThemeApplier>
+          {children}
+        </ThemeApplier>
+      </ThemeEditorProvider>
     </ThemeContext.Provider>
   );
 };

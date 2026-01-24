@@ -1,17 +1,20 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Popover Overrides
+ *
+ * Pattern Reference: MUI v7 Popover.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Popover/Popover.js
+ */
 
 const MuiPopover = {
   styleOverrides: {
-    paper: {
-      borderRadius: '3px',
-      border: 'solid 1px ' + theme.palette.colorGuide['grey-04'],
-      boxShadow: '0 5px 10px 0 rgba(13, 35, 69, 0.15)',
+    paper: ({ theme }) => ({
+      borderRadius: (theme.vars || theme).shape.borderRadius,
+      border: `1px solid ${(theme.vars || theme).palette.divider}`,
+      boxShadow: (theme.vars || theme).shadows[8],
       margin: 0,
-      padding: 12,
-      // Entrance animation
+      padding: theme.spacing(1.5),
       animation: 'mui-popover-enter 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-      transformOrigin: 'top left', // Dynamic origin usually handled by Popper.js, but this sets default
-    },
+    }),
   },
 };
 

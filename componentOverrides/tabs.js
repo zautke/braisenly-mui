@@ -1,24 +1,28 @@
-import theme from '../themeStub';
-import {colorGuide as color} from '../colorGuide';
+/**
+ * Theme-Agnostic Tabs Overrides
+ *
+ * Pattern Reference: MUI v7 Tabs.js
+ * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Tabs/Tabs.js
+ */
 
 const MuiTabs = {
   styleOverrides: {
-    root: {
-      backgroundColor: theme.palette.common.white,
-      borderBottom: '1px solid ' + color['green-base'],
-    },
-    indicator: {
-      backgroundColor: theme.palette.primary.main,
+    root: ({ theme }) => ({
+      backgroundColor: (theme.vars || theme).palette.background.paper,
+      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
+    }),
+    indicator: ({ theme }) => ({
+      backgroundColor: (theme.vars || theme).palette.primary.main,
       height: 2,
-      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', // Smooth sliding
-    },
+      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    }),
   },
 };
 
 const MuiTab = {
   styleOverrides: {
-    root: {
-      marginRight: 16,
+    root: ({ theme }) => ({
+      marginRight: theme.spacing(2),
       '&:last-child': {
         marginRight: 0,
       },
@@ -27,37 +31,29 @@ const MuiTab = {
         minWidth: 0,
       },
       
-      transition: 'color 0.2s ease, font-weight 0.2s ease',
+      transition: theme.transitions.create(['color', 'font-weight'], { duration: 200 }),
 
       '&:hover': {
-        color: theme.palette.primary.main,
-        // fontWeight: 'normal', // Original had 'normal', but usually we want to maintain weight or bold it
+        color: (theme.vars || theme).palette.primary.main,
       },
       
       '&.Mui-selected': {
-        ...theme.typography.arialBase,
+        ...theme.typography.body2,
         lineHeight: 'normal',
-        fontWeight: theme.typography.fontWeightBold, // Enforce bold on selected for A11y/clarity
-        color: theme.palette.primary.main,
+        fontWeight: theme.typography.fontWeightBold,
+        color: (theme.vars || theme).palette.primary.main,
       },
       
       '&:active': {
-        color: color['grey-05'], // Fallback if '' was empty in original
+        color: (theme.vars || theme).palette.action.active,
         fontWeight: 'normal',
       },
       
       '&.Mui-disabled': {
-        color: theme.palette.text.disabled,
+        color: (theme.vars || theme).palette.text.disabled,
         fontWeight: 'normal',
       },
-    },
-    
-    // Legacy mapping: textColorInherit roughly maps to default behavior, 
-    // but usually handled via root styles + overrides.
-    // In v7, we stick to 'root'.
-    
-    // The original 'label' and 'labelContainer' keys are deprecated/removed in newer MUI versions.
-    // Styles should be applied to the root or sub-selectors.
+    }),
   },
 };
 
