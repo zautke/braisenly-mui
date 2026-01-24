@@ -81,6 +81,9 @@ Every agent working on a component iteration MUST:
 ### Accordion
 **Status**: Not Started
 
+#### Consumed Tokens
+`palette.divider`, `palette.action.disabled`, `palette.action.disabledBackground`, `shape.borderRadius`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`
+
 #### References
 [Annotated links with descriptions]
 
@@ -97,6 +100,9 @@ Every agent working on a component iteration MUST:
 
 ### Alert
 **Status**: Research Complete
+
+#### Consumed Tokens
+`palette.mode`, `palette.getContrastText`, `typography.fontWeightMedium`, `lighten`
 
 #### References
 - **MUI API**: [Alert API](https://mui.com/material-ui/api/alert/)
@@ -149,6 +155,9 @@ const MuiAlert = {
 ### Autocomplete
 **Status**: Research Complete
 
+#### Consumed Tokens
+`palette.primary.main`, `palette.text.secondary`, `palette.background.paper`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.selected`, `palette.action.selectedOpacity`, `palette.action.disabled`, `palette.action.disabledOpacity`, `palette.action.focus`, `palette.action.focusOpacity`, `zIndex.modal`, `alpha`
+
 #### References
 - **MUI API**: [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
 - **MUI Source**: [Autocomplete.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Autocomplete/Autocomplete.js)
@@ -194,6 +203,9 @@ const MuiAutocomplete = {
 
 ### Button
 **Status**: In Progress
+
+#### Consumed Tokens
+`palette.mode`, `palette.grey.300`, `palette.grey.700`, `palette.grey.800`, `palette.grey.A100`, `palette.text.primary`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.disabled`, `palette.action.disabledBackground`, `shape.borderRadius`, `shadows`, `typography.pxToRem`, `transitions.create`, `transitions.duration.short`, `alpha`
 
 #### References
 - **MUI API**: [Button API](https://mui.com/material-ui/api/button/) - Detailed props and CSS classes.
@@ -333,6 +345,9 @@ const MuiCard = {
 ### Checkbox
 **Status**: Research Complete
 
+#### Consumed Tokens
+`palette.text.secondary`, `palette.action.active`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.disabled`, `alpha`
+
 #### References
 - **MUI API**: [Checkbox API](https://mui.com/material-ui/api/checkbox/)
 - **MUI Source**: [Checkbox.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Checkbox/Checkbox.js)
@@ -387,6 +402,9 @@ const MuiCheckbox = {
 ### Chip
 **Status**: Research Complete
 
+#### Consumed Tokens
+`palette.mode`, `palette.primary.dark`, `palette.primary.contrastText`, `palette.secondary.dark`, `palette.secondary.contrastText`, `palette.grey.300`, `palette.grey.400`, `palette.grey.700`, `palette.text.primary`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.selected`, `palette.action.selectedOpacity`, `palette.action.disabled`, `palette.action.disabledOpacity`, `palette.action.focus`, `palette.action.focusOpacity`, `shadows`, `typography.pxToRem`, `typography.fontFamily`, `transitions.create`, `alpha`
+
 #### References
 - **MUI API**: [Chip API](https://mui.com/material-ui/api/chip/)
 - **MUI Source**: [Chip.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Chip/Chip.js)
@@ -432,6 +450,9 @@ const MuiChip = {
 
 ### Switch
 **Status**: Research Complete
+
+#### Consumed Tokens
+`palette.mode`, `palette.common.black`, `palette.common.white`, `palette.grey.100`, `palette.grey.300`, `palette.grey.600`, `palette.action.active`, `palette.action.hover`, `palette.action.hoverOpacity`, `shadows`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`, `alpha`, `lighten`
 
 #### References
 - **MUI API**: [Switch API](https://mui.com/material-ui/api/switch/)
@@ -494,6 +515,9 @@ const MuiSwitch = {
 
 ### CssBaseline
 **Status**: Research Complete
+
+#### Consumed Tokens
+`palette.mode`, `palette.common.white`, `palette.text.primary`, `palette.background.default`, `typography.fontWeightBold`
 
 #### References
 - **MUI API**: [CssBaseline API](https://mui.com/material-ui/api/css-baseline/)
@@ -574,6 +598,9 @@ const MuiDataGrid = {
 ### Dialog
 **Status**: Research Complete
 
+#### Consumed Tokens
+`transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`
+
 #### References
 - **MUI API**: [Dialog API](https://mui.com/material-ui/api/dialog/)
 - **MUI Source**: [Dialog.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Dialog/Dialog.js)
@@ -645,6 +672,9 @@ const MuiDialogActions = {
 ### Divider
 **Status**: Research Complete
 
+#### Consumed Tokens
+`palette.divider`, `spacing`, `alpha`
+
 #### References
 - **MUI API**: [Divider API](https://mui.com/material-ui/api/divider/)
 - **MUI Source**: [Divider.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Divider/Divider.js)
@@ -676,6 +706,9 @@ const MuiDivider = {
 
 ### Drawer
 **Status**: Research Complete
+
+#### Consumed Tokens
+`direction`, `palette.divider`, `transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`, `zIndex.drawer`
 
 #### References
 - **MUI API**: [Drawer API](https://mui.com/material-ui/api/drawer/)
@@ -726,6 +759,9 @@ const MuiDrawer = {
 ### Input
 **Status**: Research Complete
 
+#### Consumed Tokens
+`palette.mode`, `palette.error.main`, `palette.text.primary`, `spacing`, `transitions.create`, `transitions.easing.easeOut`, `transitions.duration.shorter`, `transitions.duration.short`, `alpha`
+
 #### References
 - **MUI API**: [Input API](https://mui.com/material-ui/api/input/)
 - **MUI Source**: [Input.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Input/Input.js)
@@ -765,6 +801,9 @@ const MuiInput = {
 
 ### Link
 **Status**: Research Complete
+
+#### Consumed Tokens
+`palette.text.primary`, `palette.text.secondary`, `palette.text.disabled`, `alpha`
 
 #### References
 - **MUI API**: [Link API](https://mui.com/material-ui/api/link/)
@@ -867,6 +906,9 @@ const MuiListItemButton = {
 ### Menu
 **Status**: Research Complete
 
+#### Consumed Tokens
+`direction`
+
 #### References
 - **MUI API**: [Menu API](https://mui.com/material-ui/api/menu/)
 - **MUI Source**: [Menu.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Menu/Menu.js)
@@ -961,6 +1003,9 @@ const MuiPagination = {
 
 ### Paper
 **Status**: Research Complete
+
+#### Consumed Tokens
+`palette.mode`, `palette.text.primary`, `palette.divider`, `palette.background.paper`, `shape.borderRadius`, `shadows`, `transitions.create`, `alpha`
 
 #### References
 - **MUI API**: [Paper API](https://mui.com/material-ui/api/paper/)
@@ -1059,6 +1104,9 @@ const MuiLinearProgress = {
 
 ### Radio
 **Status**: Research Complete
+
+#### Consumed Tokens
+`palette.text.secondary`, `palette.action.active`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.disabled`, `transitions.create`, `transitions.easing.easeOut`, `transitions.easing.easeIn`, `transitions.duration.shortest`, `transitions.duration.short`, `alpha`
 
 #### References
 - **MUI API**: [Radio API](https://mui.com/material-ui/api/radio/)
@@ -1161,6 +1209,9 @@ const MuiSelect = {
 ### Skeleton
 **Status**: Research Complete
 
+#### Consumed Tokens
+`palette.mode`, `palette.text.primary`, `palette.action.hover`, `shape.borderRadius`, `alpha`
+
 #### References
 - **MUI API**: [Skeleton API](https://mui.com/material-ui/api/skeleton/)
 - **MUI Source**: [Skeleton.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Skeleton/Skeleton.js)
@@ -1189,6 +1240,12 @@ const MuiSkeleton = {
 
 ### Slider
 **Status**: Research Complete
+
+#### Consumed Tokens
+`direction`, `transitions.create`, `transitions.easing.easeOut`, `transitions.easing.sharp`, `transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`
+
+#### Consumed Tokens
+`direction`, `palette.common.white`, `palette.grey.400`, `palette.grey.600`, `palette.text.primary`, `palette.text.secondary`, `palette.background.paper`, `applyStyles`, `shadows`, `typography.pxToRem`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`, `alpha`, `lighten`
 
 #### References
 - **MUI API**: [Slider API](https://mui.com/material-ui/api/slider/)
@@ -1252,6 +1309,9 @@ const MuiSlider = {
 ### Snackbar
 **Status**: Research Complete
 
+#### Consumed Tokens
+`direction`, `transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`, `zIndex.snackbar`
+
 #### References
 - **MUI API**: [Snackbar API](https://mui.com/material-ui/api/snackbar/)
 - **MUI Source**: [Snackbar.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Snackbar/Snackbar.js)
@@ -1306,6 +1366,9 @@ const MuiSnackbarContent = {
 
 ### Stepper
 **Status**: Research Complete
+
+#### Consumed Tokens
+`direction`
 
 #### References
 - **MUI API**: [Stepper API](https://mui.com/material-ui/api/stepper/)
@@ -1397,6 +1460,12 @@ const MuiSvgIcon = {
 
 ### Table
 **Status**: Research Complete
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.secondary.main`, `palette.text.secondary`, `palette.text.disabled`, `palette.action.disabled`, `palette.action.disabledOpacity`, `spacing`, `typography.pxToRem`
+
+#### Consumed Tokens
+`palette.text.secondary`, `spacing`
 
 #### References
 - **MUI API**: [Table API](https://mui.com/material-ui/api/table/)
@@ -1508,6 +1577,12 @@ const MuiTablePagination = {
 ### Tabs
 **Status**: Research Complete
 
+#### Consumed Tokens
+`direction`, `palette.primary.main`, `palette.secondary.main`, `transitions.create`, `transitions.duration.standard`
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.secondary.main`, `palette.text.secondary`, `palette.text.disabled`, `palette.action.disabled`, `palette.action.disabledOpacity`, `spacing`, `typography.pxToRem`
+
 #### References
 - **MUI API**: [Tabs API](https://mui.com/material-ui/api/tabs/)
 - **MUI Source**: [Tabs.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Tabs/Tabs.js)
@@ -1577,6 +1652,9 @@ const MuiTab = {
 ### Toolbar
 **Status**: Research Complete
 
+#### Consumed Tokens
+`spacing`
+
 #### References
 - **MUI API**: [Toolbar API](https://mui.com/material-ui/api/toolbar/)
 - **MUI Source**: [Toolbar.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Toolbar/Toolbar.js)
@@ -1603,6 +1681,9 @@ const MuiToolbar = {
 
 ### Tooltip
 **Status**: Research Complete
+
+#### Consumed Tokens
+`palette.common.white`, `palette.grey.700`, `shape.borderRadius`, `typography.pxToRem`, `typography.fontFamily`, `typography.fontWeightRegular`, `typography.fontWeightMedium`, `transitions.duration.shortest`, `transitions.duration.shorter`, `transitions.duration.short`, `zIndex.tooltip`, `alpha`
 
 #### References
 - **MUI API**: [Tooltip API](https://mui.com/material-ui/api/tooltip/)
@@ -1647,3 +1728,1452 @@ const MuiTooltip = {
   - Refactored `Showcase.tsx` to support MUI v7 Grid syntax.
   - Verified compilation with `pnpm tsc --noEmit`.
   - Updated documentation to reflect "Code-First" verification strategy.
+
+---
+
+### ButtonGroup
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `palette.mode`, `palette.grey.400`, `palette.action.disabled`, `shape.borderRadius`, `shadows`, `alpha`
+
+#### References
+- **MUI API**: [ButtonGroup API](https://mui.com/material-ui/api/buttongroup/)
+- **MUI Source**: [ButtonGroup.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/ButtonGroup/ButtonGroup.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Grid
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `spacing`
+
+#### References
+- **MUI API**: [Grid API](https://mui.com/material-ui/api/grid/)
+- **MUI Source**: [Grid.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Grid/Grid.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### GridLegacy
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `spacing`
+
+#### References
+- **MUI API**: [GridLegacy API](https://mui.com/material-ui/api/gridlegacy/)
+- **MUI Source**: [GridLegacy.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/GridLegacy/GridLegacy.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### MenuList
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`
+
+#### References
+- **MUI API**: [MenuList API](https://mui.com/material-ui/api/menulist/)
+- **MUI Source**: [MenuList.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/MenuList/MenuList.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### PigmentGrid
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `spacing`
+
+#### References
+- **MUI API**: [PigmentGrid API](https://mui.com/material-ui/api/pigmentgrid/)
+- **MUI Source**: [PigmentGrid.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/PigmentGrid/PigmentGrid.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### PigmentStack
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `spacing`
+
+#### References
+- **MUI API**: [PigmentStack API](https://mui.com/material-ui/api/pigmentstack/)
+- **MUI Source**: [PigmentStack.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/PigmentStack/PigmentStack.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Popper
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`
+
+#### References
+- **MUI API**: [Popper API](https://mui.com/material-ui/api/popper/)
+- **MUI Source**: [Popper.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Popper/Popper.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### SpeedDial
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `spacing`, `transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`, `zIndex.speedDial`
+
+#### References
+- **MUI API**: [SpeedDial API](https://mui.com/material-ui/api/speeddial/)
+- **MUI Source**: [SpeedDial.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/SpeedDial/SpeedDial.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Stack
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `spacing`
+
+#### References
+- **MUI API**: [Stack API](https://mui.com/material-ui/api/stack/)
+- **MUI Source**: [Stack.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Stack/Stack.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### styles
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `palette.mode`, `palette.common.white`, `palette.primary.main`, `palette.secondary.main`, `palette.error.main`, `palette.error.light`, `palette.error.dark`, `palette.warning.main`, `palette.warning.light`, `palette.warning.dark`, `palette.info.main`, `palette.info.light`, `palette.info.dark`, `palette.success.main`, `palette.success.light`, `palette.success.dark`, `palette.grey.100`, `palette.grey.300`, `palette.grey.400`, `palette.grey.600`, `palette.grey.700`, `palette.grey.800`, `palette.grey.900`, `palette.grey.A100`, `palette.getContrastText`, `palette.text.primary`, `palette.divider`, `palette.background.paper`, `palette.background.default`, `spacing`, `unstable_sx`, `shadows`, `typography.htmlFontSize`, `toRuntimeSource`, `alpha`, `lighten`
+
+#### References
+- **MUI API**: [styles API](https://mui.com/material-ui/api/styles/)
+- **MUI Source**: [styles.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/styles/styles.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### TableCell
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `palette.mode`, `palette.text.primary`, `palette.text.secondary`, `palette.divider`, `palette.background.default`, `typography.pxToRem`, `typography.fontWeightMedium`, `alpha`, `lighten`
+
+#### References
+- **MUI API**: [TableCell API](https://mui.com/material-ui/api/tablecell/)
+- **MUI Source**: [TableCell.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/TableCell/TableCell.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### TableSortLabel
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `palette.text.primary`, `palette.text.secondary`, `transitions.create`, `transitions.duration.shorter`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [TableSortLabel API](https://mui.com/material-ui/api/tablesortlabel/)
+- **MUI Source**: [TableSortLabel.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/TableSortLabel/TableSortLabel.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### TabScrollButton
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`
+
+#### References
+- **MUI API**: [TabScrollButton API](https://mui.com/material-ui/api/tabscrollbutton/)
+- **MUI Source**: [TabScrollButton.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/TabScrollButton/TabScrollButton.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### ToggleButtonGroup
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`, `shape.borderRadius`
+
+#### References
+- **MUI API**: [ToggleButtonGroup API](https://mui.com/material-ui/api/togglebuttongroup/)
+- **MUI Source**: [ToggleButtonGroup.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/ToggleButtonGroup/ToggleButtonGroup.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### useAutocomplete
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`direction`
+
+#### References
+- **MUI API**: [useAutocomplete API](https://mui.com/material-ui/api/useautocomplete/)
+- **MUI Source**: [useAutocomplete.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/useAutocomplete/useAutocomplete.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Breadcrumbs
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `palette.grey.100`, `palette.grey.200`, `palette.grey.600`, `palette.grey.700`, `spacing`, `shadows`
+
+#### References
+- **MUI API**: [Breadcrumbs API](https://mui.com/material-ui/api/breadcrumbs/)
+- **MUI Source**: [Breadcrumbs.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Breadcrumbs/Breadcrumbs.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### FilledInput
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `palette.error.main`, `palette.text.primary`, `spacing`, `shape.borderRadius`, `transitions.create`, `transitions.easing.easeOut`, `transitions.duration.shorter`, `transitions.duration.short`, `alpha`
+
+#### References
+- **MUI API**: [FilledInput API](https://mui.com/material-ui/api/filledinput/)
+- **MUI Source**: [FilledInput.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/FilledInput/FilledInput.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### InputBase
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `palette.text.primary`, `palette.text.disabled`, `spacing`, `transitions.create`, `transitions.duration.shorter`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [InputBase API](https://mui.com/material-ui/api/inputbase/)
+- **MUI Source**: [InputBase.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/InputBase/InputBase.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### LinearProgress
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `lighten`
+
+#### References
+- **MUI API**: [LinearProgress API](https://mui.com/material-ui/api/linearprogress/)
+- **MUI Source**: [LinearProgress.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/LinearProgress/LinearProgress.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### OutlinedInput
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `palette.error.main`, `palette.text.primary`, `palette.action.disabled`, `spacing`, `shape.borderRadius`, `transitions.create`, `transitions.easing.easeOut`, `alpha`
+
+#### References
+- **MUI API**: [OutlinedInput API](https://mui.com/material-ui/api/outlinedinput/)
+- **MUI Source**: [OutlinedInput.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/OutlinedInput/OutlinedInput.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### PaginationItem
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `palette.text.primary`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.selected`, `palette.action.selectedOpacity`, `palette.action.disabled`, `palette.action.disabledBackground`, `palette.action.disabledOpacity`, `palette.action.focus`, `palette.action.focusOpacity`, `palette.action.activatedOpacity`, `shape.borderRadius`, `typography.pxToRem`, `transitions.create`, `transitions.duration.short`, `alpha`
+
+#### References
+- **MUI API**: [PaginationItem API](https://mui.com/material-ui/api/paginationitem/)
+- **MUI Source**: [PaginationItem.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/PaginationItem/PaginationItem.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### ScopedCssBaseline
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `typography.fontWeightBold`
+
+#### References
+- **MUI API**: [ScopedCssBaseline API](https://mui.com/material-ui/api/scopedcssbaseline/)
+- **MUI Source**: [ScopedCssBaseline.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/ScopedCssBaseline/ScopedCssBaseline.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### SnackbarContent
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `palette.getContrastText`, `palette.background.default`
+
+#### References
+- **MUI API**: [SnackbarContent API](https://mui.com/material-ui/api/snackbarcontent/)
+- **MUI Source**: [SnackbarContent.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/SnackbarContent/SnackbarContent.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### StepConnector
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `palette.grey.400`, `palette.grey.600`
+
+#### References
+- **MUI API**: [StepConnector API](https://mui.com/material-ui/api/stepconnector/)
+- **MUI Source**: [StepConnector.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/StepConnector/StepConnector.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### StepContent
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.mode`, `palette.grey.400`, `palette.grey.600`
+
+#### References
+- **MUI API**: [StepContent API](https://mui.com/material-ui/api/stepcontent/)
+- **MUI Source**: [StepContent.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/StepContent/StepContent.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### ImageListItemBar
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.common.white`, `typography.pxToRem`, `typography.fontFamily`
+
+#### References
+- **MUI API**: [ImageListItemBar API](https://mui.com/material-ui/api/imagelistitembar/)
+- **MUI Source**: [ImageListItemBar.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/ImageListItemBar/ImageListItemBar.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### BottomNavigationAction
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.text.secondary`, `typography.pxToRem`, `typography.fontFamily`, `transitions.create`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [BottomNavigationAction API](https://mui.com/material-ui/api/bottomnavigationaction/)
+- **MUI Source**: [BottomNavigationAction.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/BottomNavigationAction/BottomNavigationAction.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### ListItemButton
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.divider`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.selected`, `palette.action.selectedOpacity`, `palette.action.disabled`, `palette.action.disabledOpacity`, `palette.action.focus`, `palette.action.focusOpacity`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`, `alpha`
+
+#### References
+- **MUI API**: [ListItemButton API](https://mui.com/material-ui/api/listitembutton/)
+- **MUI Source**: [ListItemButton.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/ListItemButton/ListItemButton.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### ListSubheader
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.text.secondary`, `palette.background.paper`, `typography.pxToRem`, `typography.fontFamily`, `typography.fontWeightMedium`
+
+#### References
+- **MUI API**: [ListSubheader API](https://mui.com/material-ui/api/listsubheader/)
+- **MUI Source**: [ListSubheader.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/ListSubheader/ListSubheader.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### MenuItem
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.divider`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.selected`, `palette.action.selectedOpacity`, `palette.action.disabled`, `palette.action.disabledOpacity`, `palette.action.focus`, `palette.action.focusOpacity`, `spacing`, `alpha`
+
+#### References
+- **MUI API**: [MenuItem API](https://mui.com/material-ui/api/menuitem/)
+- **MUI Source**: [MenuItem.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/MenuItem/MenuItem.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### MobileStepper
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.background.default`, `palette.action.disabled`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`, `zIndex.mobileStepper`
+
+#### References
+- **MUI API**: [MobileStepper API](https://mui.com/material-ui/api/mobilestepper/)
+- **MUI Source**: [MobileStepper.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/MobileStepper/MobileStepper.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### StepIcon
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.primary.contrastText`, `palette.error.main`, `palette.text.disabled`, `typography.fontFamily`, `typography.caption.fontSize`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [StepIcon API](https://mui.com/material-ui/api/stepicon/)
+- **MUI Source**: [StepIcon.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/StepIcon/StepIcon.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### TableRow
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.primary.main`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.selected`, `palette.action.selectedOpacity`, `alpha`
+
+#### References
+- **MUI API**: [TableRow API](https://mui.com/material-ui/api/tablerow/)
+- **MUI Source**: [TableRow.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/TableRow/TableRow.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### FormControlLabel
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.error.main`, `palette.text.disabled`
+
+#### References
+- **MUI API**: [FormControlLabel API](https://mui.com/material-ui/api/formcontrollabel/)
+- **MUI Source**: [FormControlLabel.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/FormControlLabel/FormControlLabel.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### FormHelperText
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.error.main`, `palette.text.secondary`, `palette.text.disabled`, `spacing`
+
+#### References
+- **MUI API**: [FormHelperText API](https://mui.com/material-ui/api/formhelpertext/)
+- **MUI Source**: [FormHelperText.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/FormHelperText/FormHelperText.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### FormLabel
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.error.main`, `palette.text.secondary`, `palette.text.disabled`
+
+#### References
+- **MUI API**: [FormLabel API](https://mui.com/material-ui/api/formlabel/)
+- **MUI Source**: [FormLabel.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/FormLabel/FormLabel.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### StepLabel
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.error.main`, `palette.text.primary`, `palette.text.secondary`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [StepLabel API](https://mui.com/material-ui/api/steplabel/)
+- **MUI Source**: [StepLabel.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/StepLabel/StepLabel.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### AppBar
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.grey.100`, `palette.grey.900`, `palette.getContrastText`, `palette.text.primary`, `applyStyles`, `zIndex.appBar`
+
+#### References
+- **MUI API**: [AppBar API](https://mui.com/material-ui/api/appbar/)
+- **MUI Source**: [AppBar.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/AppBar/AppBar.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Fab
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.grey.300`, `palette.grey.900`, `palette.grey.A100`, `palette.getContrastText`, `palette.action.disabled`, `palette.action.disabledBackground`, `shadows`, `transitions.create`, `transitions.duration.short`, `zIndex.fab`
+
+#### References
+- **MUI API**: [Fab API](https://mui.com/material-ui/api/fab/)
+- **MUI Source**: [Fab.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Fab/Fab.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Avatar
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.grey.400`, `palette.grey.600`, `palette.background.default`, `shape.borderRadius`, `applyStyles`, `typography.pxToRem`, `typography.fontFamily`
+
+#### References
+- **MUI API**: [Avatar API](https://mui.com/material-ui/api/avatar/)
+- **MUI Source**: [Avatar.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Avatar/Avatar.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### TablePagination
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.text.primary`, `typography.pxToRem`
+
+#### References
+- **MUI API**: [TablePagination API](https://mui.com/material-ui/api/tablepagination/)
+- **MUI Source**: [TablePagination.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/TablePagination/TablePagination.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### SpeedDialAction
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.text.secondary`, `palette.background.paper`, `shape.borderRadius`, `shadows`, `transitions.create`, `transitions.duration.shorter`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [SpeedDialAction API](https://mui.com/material-ui/api/speeddialaction/)
+- **MUI Source**: [SpeedDialAction.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/SpeedDialAction/SpeedDialAction.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### DialogContent
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.divider`
+
+#### References
+- **MUI API**: [DialogContent API](https://mui.com/material-ui/api/dialogcontent/)
+- **MUI Source**: [DialogContent.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/DialogContent/DialogContent.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### NativeSelect
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.background.paper`, `palette.action.active`, `palette.action.disabled`, `shape.borderRadius`
+
+#### References
+- **MUI API**: [NativeSelect API](https://mui.com/material-ui/api/nativeselect/)
+- **MUI Source**: [NativeSelect.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/NativeSelect/NativeSelect.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### AvatarGroup
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.background.default`, `spacing`
+
+#### References
+- **MUI API**: [AvatarGroup API](https://mui.com/material-ui/api/avatargroup/)
+- **MUI Source**: [AvatarGroup.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/AvatarGroup/AvatarGroup.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### AccordionSummary
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.action.active`, `palette.action.disabled`, `palette.action.disabledOpacity`, `palette.action.focus`, `spacing`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [AccordionSummary API](https://mui.com/material-ui/api/accordionsummary/)
+- **MUI Source**: [AccordionSummary.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/AccordionSummary/AccordionSummary.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Icon
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.action.active`, `palette.action.disabled`, `typography.pxToRem`
+
+#### References
+- **MUI API**: [Icon API](https://mui.com/material-ui/api/icon/)
+- **MUI Source**: [Icon.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Icon/Icon.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### IconButton
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.action.active`, `palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.disabled`, `typography.pxToRem`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`, `alpha`
+
+#### References
+- **MUI API**: [IconButton API](https://mui.com/material-ui/api/iconbutton/)
+- **MUI Source**: [IconButton.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/IconButton/IconButton.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### InputAdornment
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.action.active`
+
+#### References
+- **MUI API**: [InputAdornment API](https://mui.com/material-ui/api/inputadornment/)
+- **MUI Source**: [InputAdornment.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/InputAdornment/InputAdornment.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### ListItemIcon
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.action.active`
+
+#### References
+- **MUI API**: [ListItemIcon API](https://mui.com/material-ui/api/listitemicon/)
+- **MUI Source**: [ListItemIcon.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/ListItemIcon/ListItemIcon.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### CardActionArea
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.action.hover`, `palette.action.hoverOpacity`, `palette.action.focus`, `palette.action.focusOpacity`, `transitions.create`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [CardActionArea API](https://mui.com/material-ui/api/cardactionarea/)
+- **MUI Source**: [CardActionArea.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/CardActionArea/CardActionArea.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Rating
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.action.disabled`, `palette.action.disabledOpacity`, `typography.pxToRem`, `transitions.create`, `transitions.duration.shortest`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [Rating API](https://mui.com/material-ui/api/rating/)
+- **MUI Source**: [Rating.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Rating/Rating.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### CircularProgress
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`palette.action.activatedOpacity`, `transitions.create`
+
+#### References
+- **MUI API**: [CircularProgress API](https://mui.com/material-ui/api/circularprogress/)
+- **MUI Source**: [CircularProgress.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/CircularProgress/CircularProgress.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### AccordionActions
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`spacing`
+
+#### References
+- **MUI API**: [AccordionActions API](https://mui.com/material-ui/api/accordionactions/)
+- **MUI Source**: [AccordionActions.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/AccordionActions/AccordionActions.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### AccordionDetails
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`spacing`
+
+#### References
+- **MUI API**: [AccordionDetails API](https://mui.com/material-ui/api/accordiondetails/)
+- **MUI Source**: [AccordionDetails.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/AccordionDetails/AccordionDetails.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### CardActions
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`spacing`
+
+#### References
+- **MUI API**: [CardActions API](https://mui.com/material-ui/api/cardactions/)
+- **MUI Source**: [CardActions.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/CardActions/CardActions.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### DialogActions
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`spacing`
+
+#### References
+- **MUI API**: [DialogActions API](https://mui.com/material-ui/api/dialogactions/)
+- **MUI Source**: [DialogActions.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/DialogActions/DialogActions.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### InputLabel
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`spacing`, `transitions.create`, `transitions.easing.easeOut`, `transitions.duration.shorter`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [InputLabel API](https://mui.com/material-ui/api/inputlabel/)
+- **MUI Source**: [InputLabel.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/InputLabel/InputLabel.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### TextField
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`spacing`
+
+#### References
+- **MUI API**: [TextField API](https://mui.com/material-ui/api/textfield/)
+- **MUI Source**: [TextField.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/TextField/TextField.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Badge
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`typography.pxToRem`, `typography.fontFamily`, `typography.fontWeightMedium`, `transitions.create`, `transitions.easing.easeInOut`, `transitions.easing.easeIn`, `transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`
+
+#### References
+- **MUI API**: [Badge API](https://mui.com/material-ui/api/badge/)
+- **MUI Source**: [Badge.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Badge/Badge.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### AlertTitle
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`typography.fontWeightMedium`
+
+#### References
+- **MUI API**: [AlertTitle API](https://mui.com/material-ui/api/alerttitle/)
+- **MUI Source**: [AlertTitle.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/AlertTitle/AlertTitle.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Collapse
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`transitions.getAutoHeightDuration`, `transitions.create`
+
+#### References
+- **MUI API**: [Collapse API](https://mui.com/material-ui/api/collapse/)
+- **MUI Source**: [Collapse.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Collapse/Collapse.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Grow
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`transitions.getAutoHeightDuration`, `transitions.create`
+
+#### References
+- **MUI API**: [Grow API](https://mui.com/material-ui/api/grow/)
+- **MUI Source**: [Grow.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Grow/Grow.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Fade
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`transitions.create`, `transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`
+
+#### References
+- **MUI API**: [Fade API](https://mui.com/material-ui/api/fade/)
+- **MUI Source**: [Fade.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Fade/Fade.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### SpeedDialIcon
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`transitions.create`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [SpeedDialIcon API](https://mui.com/material-ui/api/speeddialicon/)
+- **MUI Source**: [SpeedDialIcon.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/SpeedDialIcon/SpeedDialIcon.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### SwipeableDrawer
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`transitions.create`, `transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`, `zIndex.drawer`
+
+#### References
+- **MUI API**: [SwipeableDrawer API](https://mui.com/material-ui/api/swipeabledrawer/)
+- **MUI Source**: [SwipeableDrawer.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/SwipeableDrawer/SwipeableDrawer.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Zoom
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`transitions.create`, `transitions.duration.enteringScreen`, `transitions.duration.leavingScreen`
+
+#### References
+- **MUI API**: [Zoom API](https://mui.com/material-ui/api/zoom/)
+- **MUI Source**: [Zoom.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Zoom/Zoom.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### ButtonBase
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`transitions.easing.easeInOut`, `transitions.easing.easeIn`, `transitions.duration.shorter`, `transitions.duration.short`
+
+#### References
+- **MUI API**: [ButtonBase API](https://mui.com/material-ui/api/buttonbase/)
+- **MUI Source**: [ButtonBase.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/ButtonBase/ButtonBase.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
+
+---
+
+### Modal
+**Status**: Generated Stub
+
+#### Consumed Tokens
+`zIndex.modal`
+
+#### References
+- **MUI API**: [Modal API](https://mui.com/material-ui/api/modal/)
+- **MUI Source**: [Modal.js](https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Modal/Modal.js)
+
+#### Override Object
+```typescript
+// TODO: Implement theme-agnostic overrides
+```
+
+#### Screenshots
+- Before: [Pending]
+- After: [Pending]
