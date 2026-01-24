@@ -1,8 +1,9 @@
 import { createTheme } from '@mui/material/styles';
-import { styleOverrides, palette } from '@braisenly/mui';
+import { styleOverrides } from '@braisenly/mui';
+import { applyThemeVariant } from '@root/mui/themeVariants';
 
-// Glass/Dark Theme
-export const glassTheme = createTheme({
+// Base Glass Definition
+const baseGlassTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
@@ -20,35 +21,8 @@ export const glassTheme = createTheme({
   typography: {
     fontFamily: '"Barlow", "Roboto", "Helvetica", "Arial", sans-serif',
   },
-  components: {
-    // Merge existing functionality overrides
-    ...Object.keys(styleOverrides).reduce((acc: any, key) => {
-        // We might want to adjust specific overrides for dark mode here
-        // For now, we inherit the structural overrides (like animations)
-        acc[key] = styleOverrides[key];
-        return acc;
-    }, {}),
-    // Glassmorphism specifics
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-        }
-      }
-    },
-    MuiButton: {
-        styleOverrides: {
-            root: {
-                borderRadius: '20px', // More rounded for "modern" feel
-                textTransform: 'none',
-            },
-            contained: {
-                background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
-            }
-        }
-    }
-  }
+  components: styleOverrides,
 });
+
+// Apply Variant
+export const glassTheme = applyThemeVariant(baseGlassTheme, 'glass');

@@ -38,12 +38,12 @@ function App() {
 
 | Requirement | Version |
 |-------------|---------|
-| Node.js     | 18.x or later |
-| React       | ^18.2.0 |
-| React DOM   | ^18.2.0 |
-| MUI Material| ^6.0.0 |
-| Emotion React | ^11.11.0 |
-| Emotion Styled | ^11.11.0 |
+| Node.js     | 20.x or later |
+| React       | ^17.0.0 \|\| ^18.0.0 \|\| ^19.0.0 |
+| React DOM   | ^17.0.0 \|\| ^18.0.0 \|\| ^19.0.0 |
+| MUI Material| ^7.0.0 |
+| Emotion React | ^11.5.0 |
+| Emotion Styled | ^11.3.0 |
 
 ---
 
@@ -68,19 +68,19 @@ pnpm add @braisenly/mui
 
 ```bash
 # npm
-npm install @mui/material@^6.0.0 @emotion/react@^11.11.0 @emotion/styled@^11.11.0
+npm install @mui/material@^7.0.0 @emotion/react@^11.5.0 @emotion/styled@^11.3.0
 
 # yarn
-yarn add @mui/material@^6.0.0 @emotion/react@^11.11.0 @emotion/styled@^11.11.0
+yarn add @mui/material@^7.0.0 @emotion/react@^11.5.0 @emotion/styled@^11.3.0
 
 # pnpm
-pnpm add @mui/material@^6.0.0 @emotion/react@^11.11.0 @emotion/styled@^11.11.0
+pnpm add @mui/material@^7.0.0 @emotion/react@^11.5.0 @emotion/styled@^11.3.0
 ```
 
 **Optional:** Install MUI Icons if needed:
 
 ```bash
-npm install @mui/icons-material@^6.0.0
+npm install @mui/icons-material@^7.0.0
 ```
 
 ### 3. Verify Installation

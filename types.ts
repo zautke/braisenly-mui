@@ -10,7 +10,15 @@ export { type ColorGuide, type ColorName, type ColorValue, type ColorMap, type C
 // and consumers get the extended MUI types (colorGuide, ext, bk1-bk4, name, etc.)
 import "./augments";
 
-// Re-export augmented types from MUI for explicit access
-export type { Palette, PaletteOptions, TypeBackground, PaletteColor } from "@mui/material/styles/createPalette";
-export type { Theme, ThemeOptions, TypographyVariants, TypographyVariantsOptions } from "@mui/material/styles";
+// Re-export augmented types from MUI for explicit access (MUI v7 compatible)
+export type {
+  Palette,
+  PaletteOptions,
+  TypeBackground,
+  PaletteColor,
+  Theme,
+  ThemeOptions,
+  TypographyVariants,
+  TypographyVariantsOptions
+} from "@mui/material/styles";
 

@@ -46,6 +46,8 @@ const ThemeControls = () => {
           <MenuItem value="solarized">Solarized (Light)</MenuItem>
           <MenuItem value="terracotta">Terracotta (Light)</MenuItem>
           <MenuItem value="terracotta-dark">Terracotta (Dark)</MenuItem>
+          <MenuItem value="neuromancer">Neuromancer (Dark)</MenuItem>
+          <MenuItem value="cardboard">Cardboard (Light)</MenuItem>
         </Select>
       </FormControl>
     </Box>

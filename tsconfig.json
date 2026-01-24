@@ -21,7 +21,11 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
-    "declaration": true
+    "declaration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@root/*": ["./*"]
+    }
   },
   "include": ["."],
   "exclude": ["dist", "node_modules"]

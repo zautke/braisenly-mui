@@ -57,4 +57,4 @@ const MuiAlertTitle: Components<Theme>['MuiAlertTitle'] = {
 export default {
   MuiAlert,
   MuiAlertTitle
-};
+} as Components<Theme>;

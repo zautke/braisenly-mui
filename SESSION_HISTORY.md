@@ -114,3 +114,45 @@ npx playwright test --trace on
 - **QuickRef**: HIGH-SIGNAL condensed reference for agent consumption
 
 ---
+
+## [2026-01-23 16:45 UTC] FEAT: Theme Mapping Master Doc & Variant Architecture
+
+**Context:** Initiated Phase 0 of the comprehensive theming overhaul. Segregated work into `feat/theme-mapping-master-doc` branch within a git worktree.
+
+**Actions Taken:**
+- Created `docs/procedural/PROC-mui-component-theme-mapping.md`: The authoritative "Master Map" for component slot research and implementation.
+- Created `docs/semantic/SEM-theme-token-usage.md`: A comprehensive "Reverse Map" detailing theme token usage across the MUI library (Palette, Neutrals, Structure).
+- Implemented `mui/themeVariants.ts`: Module augmentation and factory pattern for "Glass", "Neuromancer", and "Cardboard" theme variants.
+- Researched and Documented Mappings for 34 Components:
+  - Validated research process using `codebase_investigator` to check `node_modules/@mui/material` and local overrides.
+  - Documented slot usage, deprecated patterns, and recommended mappings for every component.
+- Refactored `componentOverrides/*.ts|js`:
+  - Migrated from `themeStub` to `({ theme }) =>` callback pattern.
+  - Implemented `(theme.vars || theme)` pattern for CSS variable support (MUI v6/v7).
+  - Replaced hardcoded values with `theme.spacing()`, `theme.shape.borderRadius`, and palette tokens.
+  - Added strict TypeScript types (`Components<Theme>['MuiComponent']`).
+- Fixed TypeScript Errors:
+  - Resolved `themeVariant` missing property via module augmentation.
+  - Fixed implicit `any` errors in override callbacks.
+  - Fixed export type inference errors.
+
+**Files Created:**
+- `docs/procedural/PROC-mui-component-theme-mapping.md`
+- `docs/semantic/SEM-theme-token-usage.md`
+- `mui/themeVariants.ts`
+
+**Files Modified:**
+- All files in `componentOverrides/`
+- `mui5.d.ts`
+
+**Impact:**
+- The codebase is now architecturally ready for "Theme Variants".
+- Component overrides are fully theme-agnostic and support CSS variables.
+- Comprehensive documentation exists to guide future styling decisions.
+
+**Lessons Learned:**
+- `node_modules` is a reliable source of truth for installed package versions and source code patterns when GitHub access is restricted or version-specific.
+- Multi-agent delegation (simulated) is effective for batch processing large sets of components.
+- Strict TypeScript typing in overrides prevents regression and ensures API compliance.
+
+---

@@ -53,4 +53,4 @@ const MuiSlider: Components<Theme>['MuiSlider'] = {
 
 export default {
   MuiSlider
-};
+} as Components<Theme>;

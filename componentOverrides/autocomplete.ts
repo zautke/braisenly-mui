@@ -41,4 +41,4 @@ const MuiAutocomplete: Components<Theme>['MuiAutocomplete'] = {
 
 export default {
   MuiAutocomplete
-};
+} as Components<Theme>;

@@ -20,4 +20,4 @@ const MuiSkeleton: Components<Theme>['MuiSkeleton'] = {
 
 export default {
   MuiSkeleton
-};
+} as Components<Theme>;

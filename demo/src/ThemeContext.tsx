@@ -8,6 +8,8 @@ import { corporateTheme } from './themes/corporate';
 import { solarizedTheme } from './themes/solarized';
 import { terracottaTheme } from './themes/terracotta';
 import { terracottaDarkTheme } from './themes/terracottaDark';
+import { neuromancerTheme } from './themes/neuromancer';
+import { cardboardTheme } from './themes/cardboard';
 import { ThemeEditorProvider, useThemeEditor } from './ThemeEditorContext';
 
 export type ThemeName =
@@ -17,7 +19,9 @@ export type ThemeName =
   | 'corporate'
   | 'solarized'
   | 'terracotta'
-  | 'terracotta-dark';
+  | 'terracotta-dark'
+  | 'neuromancer'
+  | 'cardboard';
 
 interface ThemeContextType {
   currentTheme: ThemeName;
@@ -41,6 +45,8 @@ const getThemeByName = (name: ThemeName): Theme => {
     case 'solarized': return solarizedTheme;
     case 'terracotta': return terracottaTheme;
     case 'terracotta-dark': return terracottaDarkTheme;
+    case 'neuromancer': return neuromancerTheme;
+    case 'cardboard': return cardboardTheme;
     case 'base': default: return baseTheme;
   }
 };

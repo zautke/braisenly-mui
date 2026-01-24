@@ -42,7 +42,7 @@ export const solarizedOverrides: Components<Theme> = {
   MuiPaper: {
     styleOverrides: {
       root: { backgroundImage: 'none' },
-      rounded: ({ theme }) => ({ borderRadius: theme.shape.borderRadius * 1.5 }),
+      rounded: ({ theme }) => ({ borderRadius: (theme.shape.borderRadius as number) * 1.5 }),
       outlined: ({ theme }) => ({ 
         border: `1px solid ${alpha(sol.base01, 0.15)}`,
       }),
@@ -110,7 +110,7 @@ export const solarizedOverrides: Components<Theme> = {
   MuiCard: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         border: `1px solid ${alpha(sol.base01, 0.1)}`,
         boxShadow: `0 2px 12px ${alpha(sol.base01, 0.08)}`,
         transition: theme.transitions.create(['box-shadow', 'transform'], { duration: 250 }),
@@ -403,7 +403,7 @@ export const solarizedOverrides: Components<Theme> = {
   MuiAlert: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         border: '1px solid',
         fontWeight: 500,
       }),
@@ -522,7 +522,7 @@ export const solarizedOverrides: Components<Theme> = {
   MuiDialog: {
     styleOverrides: {
       paper: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 2,
+        borderRadius: (theme.shape.borderRadius as number) * 2,
         boxShadow: `0 24px 80px ${alpha(sol.base01, 0.25)}`,
       }),
     },
@@ -665,7 +665,7 @@ export const solarizedOverrides: Components<Theme> = {
   MuiMenu: {
     styleOverrides: {
       paper: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         boxShadow: `0 8px 32px ${alpha(sol.base01, 0.18)}`,
         border: `1px solid ${alpha(sol.base01, 0.08)}`,
       }),
@@ -675,7 +675,7 @@ export const solarizedOverrides: Components<Theme> = {
   MuiMenuItem: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius / 2,
+        borderRadius: (theme.shape.borderRadius as number) / 2,
         margin: '2px 6px',
         padding: '10px 14px',
         transition: theme.transitions.create(['background-color'], { duration: 150 }),
@@ -758,13 +758,13 @@ export const solarizedOverrides: Components<Theme> = {
   MuiAutocomplete: {
     styleOverrides: {
       paper: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         boxShadow: `0 8px 32px ${alpha(sol.base01, 0.18)}`,
         border: `1px solid ${alpha(sol.base01, 0.08)}`,
         marginTop: 4,
       }),
       option: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius / 2,
+        borderRadius: (theme.shape.borderRadius as number) / 2,
         margin: '2px 6px',
         padding: '10px 14px',
         '&:hover': { backgroundColor: alpha(sol.cyan, 0.08) },
@@ -798,7 +798,7 @@ export const solarizedOverrides: Components<Theme> = {
       root: ({ theme }) => ({
         backgroundColor: sol.base01,
         color: sol.base3,
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         fontWeight: 500,
         boxShadow: `0 8px 32px ${alpha(sol.base01, 0.3)}`,
       }),

@@ -143,7 +143,7 @@ export const applyThemeVariant = (theme: Theme, variant: ThemeVariantType = 'sta
     Object.keys(variantOverrides).forEach((componentKey) => {
       const cmp = componentKey as keyof Components<Theme>;
       if (!theme.components![cmp]) {
-        theme.components![cmp] = {};
+        (theme.components![cmp] as any) = {};
       }
       // Merge styleOverrides
       const existing = (theme.components![cmp] as any)?.styleOverrides || {};

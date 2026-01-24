@@ -59,7 +59,7 @@ export const terracottaDarkOverrides: Components<Theme> = {
   MuiPaper: {
     styleOverrides: {
       root: { backgroundImage: 'none' },
-      rounded: ({ theme }) => ({ borderRadius: theme.shape.borderRadius * 1.5 }),
+      rounded: ({ theme }) => ({ borderRadius: (theme.shape.borderRadius as number) * 1.5 }),
       outlined: ({ theme }) => ({ 
         border: `1px solid ${alpha(terraDark.textMuted, 0.2)}`,
       }),
@@ -127,7 +127,7 @@ export const terracottaDarkOverrides: Components<Theme> = {
   MuiCard: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         border: `1px solid ${alpha(terraDark.textMuted, 0.15)}`,
         backgroundColor: terraDark.bgSurface,
         boxShadow: `0 2px 12px ${alpha('#000', 0.3)}`,
@@ -415,7 +415,7 @@ export const terracottaDarkOverrides: Components<Theme> = {
   MuiAlert: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         border: '1px solid',
         fontWeight: 500,
       }),
@@ -534,7 +534,7 @@ export const terracottaDarkOverrides: Components<Theme> = {
   MuiDialog: {
     styleOverrides: {
       paper: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 2,
+        borderRadius: (theme.shape.borderRadius as number) * 2,
         backgroundColor: terraDark.bgSurface,
         boxShadow: `0 24px 80px ${alpha('#000', 0.55)}`,
       }),
@@ -679,7 +679,7 @@ export const terracottaDarkOverrides: Components<Theme> = {
   MuiMenu: {
     styleOverrides: {
       paper: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         backgroundColor: terraDark.bgElevated,
         boxShadow: `0 8px 32px ${alpha('#000', 0.4)}`,
         border: `1px solid ${alpha(terraDark.textMuted, 0.12)}`,
@@ -690,7 +690,7 @@ export const terracottaDarkOverrides: Components<Theme> = {
   MuiMenuItem: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius / 2,
+        borderRadius: (theme.shape.borderRadius as number) / 2,
         margin: '2px 6px',
         padding: '10px 14px',
         transition: theme.transitions.create(['background-color'], { duration: 150 }),
@@ -767,14 +767,14 @@ export const terracottaDarkOverrides: Components<Theme> = {
   MuiAutocomplete: {
     styleOverrides: {
       paper: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         backgroundColor: terraDark.bgElevated,
         boxShadow: `0 8px 32px ${alpha('#000', 0.4)}`,
         border: `1px solid ${alpha(terraDark.textMuted, 0.12)}`,
         marginTop: 4,
       }),
       option: ({ theme }) => ({
-        borderRadius: theme.shape.borderRadius / 2,
+        borderRadius: (theme.shape.borderRadius as number) / 2,
         margin: '2px 6px',
         padding: '10px 14px',
         '&:hover': { backgroundColor: alpha(terraDark.terracotta, 0.1) },
@@ -802,7 +802,7 @@ export const terracottaDarkOverrides: Components<Theme> = {
       root: ({ theme }) => ({
         backgroundColor: terraDark.textLight,
         color: terraDark.bgDeep,
-        borderRadius: theme.shape.borderRadius * 1.5,
+        borderRadius: (theme.shape.borderRadius as number) * 1.5,
         fontWeight: 500,
         boxShadow: `0 8px 32px ${alpha('#000', 0.45)}`,
       }),

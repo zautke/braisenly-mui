@@ -1,7 +1,9 @@
 import type { PaletteOptions } from '@mui/material';
-import type { PaletteColor } from '@mui/material/styles';
-import type { ColorPartial } from '@mui/material/styles/createPalette';
-import createPalette from '@mui/material/styles/createPalette';
+import type { PaletteColor, Color } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
+
+// ColorPartial type (compatible with MUI v7)
+type ColorPartial = Partial<Color>;
 import { color } from './colorGuide';
 
 
@@ -106,16 +108,8 @@ export const paletteOptionExtensions: PaletteOptions = {
 }
 
 
-/* note the function signature from '@mui/material/styles/createPalette' */
-export const extendedPalette = createPalette(paletteOptionExtensions);
-
-// export const extendedPalette = createPalette({
-//   primary: { // <PaletteColor>
-//     main: color['treegreen'],
-//     // light: "",
-//     // dark: "",
-//     // contrastText: ""
-//   },
-// });
+/* MUI v7: createPalette is no longer a public export, use createTheme instead */
+const tempTheme = createTheme({ palette: paletteOptionExtensions });
+export const extendedPalette = tempTheme.palette;
 
 export default extendedPalette;

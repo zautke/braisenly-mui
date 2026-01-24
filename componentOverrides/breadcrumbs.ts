@@ -31,4 +31,4 @@ const MuiBreadcrumbs: Components<Theme>['MuiBreadcrumbs'] = {
 
 export default {
   MuiBreadcrumbs
-};
+} as Components<Theme>;

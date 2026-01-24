@@ -475,7 +475,7 @@ const customTheme = createTheme(
 | Package name | `@braisenly/mui` |
 | Default export | `finalTheme` (Theme object) |
 | Theme name | `"Custom"` |
-| MUI version | `^6.0.0` |
+| MUI version | `^7.0.0` |
 | Primary color | `#1C6F26` (treegreen) |
 | Secondary color | `#7b6748` (walnut) |
 | Palette mode | `light` |
@@ -483,18 +483,18 @@ const customTheme = createTheme(
 ### Peer Dependencies (Required)
 ```json
 {
-  "@emotion/react": "^11.11.0",
-  "@emotion/styled": "^11.11.0",
-  "@mui/material": "^6.0.0",
-  "react": "^18.2.0",
-  "react-dom": "^18.2.0"
+  "@emotion/react": "^11.5.0",
+  "@emotion/styled": "^11.3.0",
+  "@mui/material": "^7.0.0",
+  "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+  "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
 }
 ```
 
 ### Optional Peer Dependencies
 ```json
 {
-  "@mui/icons-material": "^6.0.0"
+  "@mui/icons-material": "^7.0.0"
 }
 ```
 

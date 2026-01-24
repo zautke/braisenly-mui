@@ -35,4 +35,4 @@ const MuiLink: Components<Theme>['MuiLink'] = {
 
 export default {
   MuiLink
-};
+} as Components<Theme>;

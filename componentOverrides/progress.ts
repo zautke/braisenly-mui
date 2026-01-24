@@ -31,4 +31,4 @@ const MuiLinearProgress: Components<Theme>['MuiLinearProgress'] = {
 export default {
   MuiCircularProgress,
   MuiLinearProgress
-};
+} as Components<Theme>;

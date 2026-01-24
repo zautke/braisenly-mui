@@ -206,7 +206,7 @@ export const Showcase: React.FC = () => {
           <CategorySection id="inputs-selection" title="Inputs & Selection">
             <Grid container spacing={3}>
               {/* TextField Variants */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="TextField Variants">
                   <Stack spacing={2}>
                     <TextField label="Outlined" variant="outlined" fullWidth />
@@ -220,7 +220,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Select */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Select">
                   <Stack spacing={2}>
                     <FormControl fullWidth>
@@ -245,7 +245,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Checkbox, Radio, Switch */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Checkbox, Radio & Switch">
                   <FormGroup>
                     <FormControlLabel control={<Checkbox defaultChecked />} label="Checked Checkbox" />
@@ -269,7 +269,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Slider */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Slider">
                   <Stack spacing={4} sx={{ px: 1 }}>
                     <Box>
@@ -300,7 +300,7 @@ export const Showcase: React.FC = () => {
           <CategorySection id="buttons-actions" title="Buttons & Actions">
             <Grid container spacing={3}>
               {/* Button Variants */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Button Variants">
                   <Stack spacing={2}>
                     <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 1 }}>
@@ -320,7 +320,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Button Sizes */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Button Sizes">
                   <Stack spacing={2}>
                     <Stack direction="row" spacing={2} alignItems="center" sx={{ flexWrap: 'wrap', gap: 1 }}>
@@ -338,7 +338,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Buttons with Icons & States */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Buttons with Icons & States">
                   <Stack spacing={2}>
                     <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap', gap: 1 }}>
@@ -355,7 +355,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Chips */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Chips">
                   <Stack spacing={2}>
                     <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1 }}>
@@ -380,7 +380,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* IconButton & FAB */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="IconButton">
                   <Stack direction="row" spacing={2} alignItems="center">
                     <IconButton aria-label="settings"><SettingsIcon /></IconButton>
@@ -393,7 +393,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* FAB */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Floating Action Button (FAB)">
                   <Stack direction="row" spacing={2} alignItems="center">
                     <Fab color="primary" aria-label="add" size="small">
@@ -421,7 +421,7 @@ export const Showcase: React.FC = () => {
           <CategorySection id="navigation" title="Navigation">
             <Grid container spacing={3}>
               {/* Tabs */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Tabs">
                   <Tabs value={tabValue} onChange={(_, value) => setTabValue(value)}>
                     <Tab label="Overview" />
@@ -437,7 +437,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Breadcrumbs */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Breadcrumbs">
                   <Stack spacing={2}>
                     <Breadcrumbs aria-label="breadcrumb">
@@ -463,7 +463,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Pagination */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Pagination">
                   <Stack spacing={2}>
                     <Pagination count={10} color="primary" />
@@ -475,7 +475,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Stepper */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Stepper">
                   <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (
@@ -509,7 +509,7 @@ export const Showcase: React.FC = () => {
           <CategorySection id="data-display" title="Data Display">
             <Grid container spacing={3}>
               {/* Table */}
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <SubSection title="Table">
                   <TableContainer component={Paper} variant="outlined">
                     <Table size="small">
@@ -539,7 +539,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* List */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="List">
                   <Paper variant="outlined">
                     <List>
@@ -563,7 +563,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Avatar & Badge */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Avatar & Badge">
                   <Stack spacing={3}>
                     <Box>
@@ -598,7 +598,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Tooltip */}
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <SubSection title="Tooltip">
                   <Stack direction="row" spacing={3} alignItems="center" sx={{ flexWrap: 'wrap', gap: 2 }}>
                     <Tooltip title="Default tooltip">
@@ -625,7 +625,7 @@ export const Showcase: React.FC = () => {
           <CategorySection id="feedback" title="Feedback">
             <Grid container spacing={3}>
               {/* Alert Severities */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Alert Severities">
                   <Stack spacing={2}>
                     <Alert severity="success" icon={<CheckCircleIcon />}>
@@ -645,7 +645,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Alert Variants */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Alert Variants">
                   <Stack spacing={2}>
                     <Alert severity="success" variant="outlined">
@@ -662,7 +662,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Snackbar */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Snackbar">
                   <Button variant="outlined" onClick={() => setSnackbarOpen(true)}>
                     Show Snackbar
@@ -671,7 +671,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Progress */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Progress">
                   <Stack spacing={3}>
                     <Box>
@@ -695,7 +695,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Skeleton */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Skeleton">
                   <Stack spacing={1}>
                     <Skeleton variant="text" width="80%" height={24} />
@@ -708,7 +708,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Dialog */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Dialog">
                   <Button variant="outlined" onClick={() => setDialogOpen(true)}>
                     Open Dialog
@@ -724,7 +724,7 @@ export const Showcase: React.FC = () => {
           <CategorySection id="surfaces-containers" title="Surfaces & Containers">
             <Grid container spacing={3}>
               {/* Card */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Card">
                   <Card variant="outlined">
                     <CardHeader
@@ -747,7 +747,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Paper */}
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <SubSection title="Paper">
                   <Stack spacing={2}>
                     <Paper elevation={0} sx={{ p: 2 }}>
@@ -767,7 +767,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Accordion */}
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <SubSection title="Accordion">
                   <Stack spacing={1}>
                     <Accordion defaultExpanded>
@@ -801,7 +801,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Toolbar */}
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <SubSection title="Toolbar">
                   <Paper variant="outlined">
                     <Toolbar>
@@ -827,7 +827,7 @@ export const Showcase: React.FC = () => {
           <CategorySection id="overlays" title="Overlays">
             <Grid container spacing={3}>
               {/* Drawer */}
-              <Grid item xs={12} md={4}>
+              <Grid size={{ xs: 12, md: 4 }}>
                 <SubSection title="Drawer">
                   <Button variant="outlined" onClick={() => setDrawerOpen(true)}>
                     Open Drawer
@@ -836,7 +836,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Menu */}
-              <Grid item xs={12} md={4}>
+              <Grid size={{ xs: 12, md: 4 }}>
                 <SubSection title="Menu">
                   <Button
                     variant="outlined"
@@ -849,7 +849,7 @@ export const Showcase: React.FC = () => {
               </Grid>
 
               {/* Popover */}
-              <Grid item xs={12} md={4}>
+              <Grid size={{ xs: 12, md: 4 }}>
                 <SubSection title="Popover">
                   <Button
                     variant="outlined"

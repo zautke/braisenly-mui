@@ -52,6 +52,31 @@ const MuiInput: Components<Theme>['MuiInput'] = {
   },
 }
 
+const MuiFilledInput: Components<Theme>['MuiFilledInput'] = {
+  styleOverrides: {
+    root: ({ theme }) => ({
+      backgroundColor: (theme.vars || theme).palette.action.hover,
+      '&:hover': {
+        backgroundColor: (theme.vars || theme).palette.action.selected,
+      },
+      '&.Mui-focused': {
+        backgroundColor: (theme.vars || theme).palette.action.selected,
+      },
+    }),
+  },
+};
+
+const MuiOutlinedInput: Components<Theme>['MuiOutlinedInput'] = {
+  styleOverrides: {
+    root: ({ theme }) => ({
+      borderRadius: (theme.vars || theme).shape.borderRadius,
+    }),
+    notchedOutline: ({ theme }) => ({
+      borderColor: (theme.vars || theme).palette.divider,
+    }),
+  },
+};
+
 const MuiInputAdornment: Components<Theme>['MuiInputAdornment'] = {
   styleOverrides: {
     root: {
@@ -75,6 +100,7 @@ const MuiInputLabel: Components<Theme>['MuiInputLabel'] = {
 
 export default {
   MuiInput,
-  MuiInputAdornment,
+  MuiFilledInput,
+  MuiOutlinedInput,
   MuiInputLabel,
-}
+} as Components<Theme>;

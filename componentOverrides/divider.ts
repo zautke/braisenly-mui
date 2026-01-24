@@ -23,4 +23,4 @@ const MuiDivider: Components<Theme>['MuiDivider'] = {
 
 export default {
   MuiDivider
-};
+} as Components<Theme>;

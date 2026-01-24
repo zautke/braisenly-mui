@@ -7,8 +7,9 @@
 
 import type { ColorGuide } from "./colorGuide";
 
-// Augment @mui/material/styles for Typography variants
+// Augment @mui/material/styles (MUI v7 compatible - single consolidated declaration)
 declare module "@mui/material/styles" {
+  // Typography variants
   export interface TypographyVariants {
     poster: React.CSSProperties;
   }
@@ -16,10 +17,17 @@ declare module "@mui/material/styles" {
   export interface TypographyVariantsOptions {
     poster?: React.CSSProperties;
   }
-}
 
-// Augment @mui/material/styles/createPalette for extended palette options
-declare module "@mui/material/styles/createPalette" {
+  // Theme name
+  export interface Theme {
+    name?: string;
+  }
+
+  export interface ThemeOptions {
+    name?: string;
+  }
+
+  // Extended palette options
   export interface PaletteOptions {
     colorGuide?: ColorGuide;
     ext?: unknown;
@@ -35,17 +43,6 @@ declare module "@mui/material/styles/createPalette" {
   export interface Palette {
     colorGuide: ColorGuide;
     ext?: unknown;
-  }
-}
-
-// Augment @mui/material/styles/createTheme for theme name
-declare module "@mui/material/styles/createTheme" {
-  interface ThemeOptions {
-    name?: string;
-  }
-
-  interface Theme {
-    name?: string;
   }
 }
 

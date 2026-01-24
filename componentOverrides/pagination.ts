@@ -34,4 +34,4 @@ const MuiPagination: Components<Theme>['MuiPagination'] = {
 
 export default {
   MuiPagination
-};
+} as Components<Theme>;

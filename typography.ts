@@ -1,16 +1,8 @@
-
 import React from 'react'
 import extendedPalette from './palette'
-// import colorGuide, { ColorGuide } from './colorGuide'
-import colorGuide from './colorGuide'
-
-import createTypography, { TypographyOptions, TypographyStyle, TypographyStyleOptions, TypographyUtils } from '@mui/material/styles/createTypography'
-import FontFamily from '@mui/material/Typography'
-// Supports weights 100-700
+import { createTheme } from '@mui/material/styles'
+// import type { TypographyOptions, TypographyStyle, TypographyUtils } from '@mui/material/styles/createTypography'
 import '@fontsource-variable/victor-mono'
-//import createTypography, { TypographyStyle, TypographyUtils } from '@mui/material/styles/createTypography'
-
-// import { Palette } from '@mui/material/styles/createPalette';
 
 const palette = extendedPalette
 
@@ -21,7 +13,6 @@ export function pxToRem (value: number): string
 {
   return `${(value / htmlFontSize) * coef}rem`
 }
-
 
 const fontFallbacks = [
   'Lato',
@@ -59,7 +50,7 @@ const victorMonoFont = {
   ].join(', '),
 }
 
-const fontFamily = {
+const fontFamilyDef = {
   ...victorMonoFont,
   fontSize: 16,
   htmlFontSize: 14,
@@ -76,27 +67,11 @@ const fontFamily = {
 const buttonOverrides = {
   ...barlowFont,
   fontSize: pxToRem(13),
-  fontWeight: 'normal',
+  fontWeight: 'normal' as React.CSSProperties['fontWeight'],
   letterSpacing: 'normal',
   lineHeight: 1.15,
-  //textTransform: 'captialize',
-  color: colorGuide['greyscale'],
-  fontVariant: 'italic'
-}
-
-
-const typographyOverrides = {
-  button: {
-    ...cormorantFont,
-    fontSize: pxToRem(13),
-    fontWeight: 'normal',
-    letterSpacing: 'normal',
-    lineHeight: 1.15,
-    textTransform: 'captialize',
-    color: colorGuide['greyscale'],
-    fontVariant: 'italic'
-  },
-  fontFamily
+  color: '#000000', // Placeholder for colorGuide
+  fontVariant: 'italic' as React.CSSProperties['fontVariant']
 }
 
 export interface FontStyle
@@ -131,53 +106,29 @@ export type Variant =
   | 'caption'
   | 'button'
   | 'overline'
+  // Custom variants not in standard MUI but used in project
   | 'banner'
   | 'poster'
 
-//typography: TypographyOptions | ((palette: Palette) => TypographyOptions),
+// Mock types to avoid import issues
+type TypographyStyle = React.CSSProperties;
+type TypographyUtils = { pxToRem: (px: number) => string };
+type TypographyOptions = any;
 
 export interface Typography extends Record<Variant, TypographyStyle>, FontStyle, TypographyUtils { }
 
-//export interface TypographyOptions
-//   extends Partial<Record<Variant, TypographyStyleOptions> & FontStyleOptions> {}
-
-const fontWeightSemiBold = {
-  fontWeight: 600
-}
-
-const typographyOptions: Typography = {
-  h1: {},
-  h2: {},
-  h3: {},
-  h4: {},
-  h5: {},
-  h6: {},
-  subtitle1: {},
-  subtitle2: {},
-  body1: {},
-  body2: {},
-  caption: {},
-  overline: {},
+const typographyOptions: TypographyOptions = {
   banner: {},
   poster: {},
-  // @ts-ignore
-  regular: {},
-  // @ts-ignore
-  label: {},
   ...palmBeachFont,
-  ...fontFamily,
-  //...typographyOverrides,
+  ...fontFamilyDef,
   button: buttonOverrides,
   pxToRem,
 }
 
-
-export default createTypography(
+const dummyTheme = createTheme({
   palette,
-  typographyOptions
-)
+  typography: typographyOptions
+})
 
-
-//   console.log("typographyInput:", typography )
-
-// export default typography;
+export default dummyTheme.typography
