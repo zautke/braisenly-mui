@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Table.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Table/Table.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiTableRow = {
+const MuiTableRow: Components<Theme>['MuiTableRow'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -35,7 +36,7 @@ const MuiTableRow = {
   }
 };
 
-const MuiTableCell = {
+const MuiTableCell: Components<Theme>['MuiTableCell'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       padding: theme.spacing(2, 3), 
@@ -53,7 +54,7 @@ const MuiTableCell = {
   }
 };
 
-const MuiTableSortLabel = {
+const MuiTableSortLabel: Components<Theme>['MuiTableSortLabel'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       '&.Mui-active': {
@@ -63,7 +64,7 @@ const MuiTableSortLabel = {
   }
 };
 
-const MuiTablePagination = {
+const MuiTablePagination: Components<Theme>['MuiTablePagination'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       ...theme.typography.body2,
@@ -77,7 +78,7 @@ const MuiTablePagination = {
     select: ({ theme }) => ({
       minWidth: 0,
       paddingLeft: theme.spacing(0.5),
-      paddingRight: theme.spacing(3) + '!important', 
+      paddingRight: `${theme.spacing(3)} !important`,
     }),
     selectIcon: ({ theme }) => ({
       top: 'calc(50% - 12px)',
@@ -103,4 +104,4 @@ export default {
   MuiTableCell,
   MuiTableSortLabel,
   MuiTablePagination
-};
+} as Components<Theme>;

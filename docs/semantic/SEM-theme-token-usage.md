@@ -1,188 +1,87 @@
-# Theme Token Usage Map
+# MUI Theme Token Semantic Usage Guide
 
-## Purpose
-This document serves as a "Reverse Map" for the MUI Theme Object. It answers the question: **"If I change this theme token, what components will be affected?"**
+This document codifies the **semantic meaning** and **intended usage** of MUI theme tokens within this design system. It bridges the gap between technical property names (e.g., `body2`) and design intent (e.g., "image captions").
 
-Use this reference when designing broad "Theme Variants" (Glass, Neuromancer) to ensure you are hitting all the necessary touchpoints for a consistent look-and-feel.
+## 1. Typography
 
----
+| Token | Semantic Role | Best Usage Examples |
+|-------|---------------|---------------------|
+| `h1` | **Page Title** | The single main heading of a screen. |
+| `h2` | **Section Title** | Major section dividers within a page. |
+| `h3` | **Card/Modal Title** | Titles of contained UI elements or large modals. |
+| `h4` | **Feature Highlight** | Marketing text or significant feature callouts. |
+| `h5` | **Sub-section Header** | Grouping related content within a card or section. |
+| `h6` | **Component Header** | Titles for dialogs, cards, or specific widgets. |
+| `subtitle1` | **Emphasized Body** | Lead paragraphs, intro text, or list item titles. |
+| `subtitle2` | **Label / Key** | **Table headers**, form labels, or metadata keys. Medium weight. |
+| `body1` | **Primary Content** | The default for long-form reading, articles, and main descriptions. |
+| `body2` | **Secondary Content** | **Image captions**, dense lists, table rows, help text, or UI labels where space is premium. |
+| `button` | **Interactive Text** | Text inside buttons, tabs, and actionable chips. Often uppercase. |
+| `caption` | **Metadata / Hints** | Timestamps, copyright footers, input field helpers, or avatar initials. Smallest legible text. |
+| `overline` | **Eyebrow / Tag** | Uppercase labels above headings or tracking categories. |
 
-## 🎨 Palette Colors
+## 2. Palette
 
-### `palette.primary`
-Used for the main brand color, typically the most prominent actions and active states.
+### Intent Colors (Status)
+| Token | Semantic Meaning | Usage |
+|-------|------------------|-------|
+| `primary` | **Action / Brand** | Main call-to-action buttons, active states, links, checkboxes, brand identity. |
+| `secondary` | **Accent / Alternative** | Floating action buttons, selection controls, or distinct decorative elements. |
+| `error` | **Critical / Destructive** | Form errors, delete buttons, "danger" zones, disconnected states. |
+| `warning` | **Caution / Pending** | Alerts, non-blocking issues, "awaiting action" states. |
+| `info` | **Neutral / Help** | Tips, help icons, informational toasts, "new feature" badges. |
+| `success` | **Positive / Complete** | "Save successful" toasts, completion steps, valid form indicators. |
 
-| Component | Usage Context | Notes |
-|-----------|---------------|-------|
-| **Button** | `contained`, `outlined`, `text` variants | When `color="primary"` (default). Background for contained; text/border for others. |
-| **IconButton** | `color="primary"` | Icon color. |
-| **Fab** | Background color | When `color="primary"`. |
-| **Checkbox** | Checked state | Icon color. |
-| **Radio** | Checked state | Icon color. |
-| **Switch** | Track (checked), Thumb (focus) | Track background when checked. |
-| **TextField** | Focused border, Label (focused) | `primary.main` used for focus ring and label color. |
-| **Input** | Underline (focused) | `primary.main` for the active underline. |
-| **CircularProgress** | Stroke color | Default color. |
-| **LinearProgress** | Bar color | Default color. |
-| **Tabs** | Indicator, Selected Tab text | `primary.main` is standard for active tab. |
-| **Badge** | Badge background | When `color="primary"`. |
-| **Chip** | Background/Border | When `color="primary"`. |
-| **AppBar** | Background | When `color="primary"` (default). |
-| **Link** | Text color | When `color="primary"`. |
-| **ListItem** | Selected state text | Often inherits or uses primary for selected text. |
+### Text Colors
+| Token | Semantic Meaning | Usage |
+|-------|------------------|-------|
+| `text.primary` | **High Emphasis** | Headings, body text, active icons. The default "ink" color. |
+| `text.secondary` | **Medium Emphasis** | Helper text, secondary labels, less important data fields. |
+| `text.disabled` | **Low Emphasis** | Placeholder text, disabled inputs, inactive controls. |
 
-### `palette.secondary`
-Used for secondary actions, accents, or alternative states.
+### Backgrounds
+| Token | Semantic Meaning | Usage |
+|-------|------------------|-------|
+| `background.default` | **App Canvas** | The lowest level background (behind everything). Usually off-white or dark grey. |
+| `background.paper` | **Surface / Card** | Elevated surfaces like Cards, Drawers, Modals, Menus. Usually white or lighter grey. |
 
-| Component | Usage Context | Notes |
-|-----------|---------------|-------|
-| **Button** | All variants | When `color="secondary"`. |
-| **Fab** | Background color | When `color="secondary"`. |
-| **Checkbox** | Checked state | When `color="secondary"`. |
-| **Radio** | Checked state | When `color="secondary"`. |
-| **Switch** | Track (checked) | When `color="secondary"`. |
-| **Slider** | Thumb, Track | When `color="secondary"`. |
-| **Badge** | Badge background | When `color="secondary"`. |
+### Action States (Interactive)
+| Token | Semantic Meaning | Usage |
+|-------|------------------|-------|
+| `action.active` | **Icon / Toggle** | Default color for icons and toggle buttons before interaction. |
+| `action.hover` | **Mouseover** | Background tint for hover states (e.g., table rows, list items). |
+| `action.selected` | **Current Selection** | Background tint for the currently selected item in a list or menu. |
+| `action.disabled` | **Unusable (Content)** | Color of text/icons when disabled. |
+| `action.disabledBackground` | **Unusable (Area)** | Background color of buttons/inputs when disabled. |
+| `divider` | **Boundary** | Thin borders, horizontal rules, and separation lines. |
 
-### `palette.error`
-Used for error states, destructive actions, and alerts.
+## 3. Layout & Shape
 
-| Component | Usage Context | Notes |
-|-----------|---------------|-------|
-| **Button** | All variants | When `color="error"`. |
-| **TextField** | Error state | Border color, Label color, Helper text color. |
-| **Input** | Error state | Underline color. |
-| **FormHelperText**| Error state | Text color. |
-| **Alert** | Standard/Outlined/Filled | Background and icon color for `severity="error"`. |
-| **Snackbar** | Error variant | Background color. |
-| **Chip** | Delete icon (hover) | Often mapped to error.main on hover. |
+| Token | Semantic Meaning | Usage |
+|-------|------------------|-------|
+| `shape.borderRadius` | **Softness** | Global corner radius. Use `1x` for small inputs/chips, `2x` or `3x` for Cards/Dialogs to create a hierarchy of softness. |
+| `spacing` | **Rhythm** | The fundamental grid unit (usually 8px). All padding/margin should be multiples of this (e.g., `theme.spacing(2)` = 16px). |
 
-### `palette.warning` / `palette.info` / `palette.success`
-Used for semantic feedback states.
+## 4. Elevation (Shadows)
 
-| Component | Usage Context | Notes |
-|-----------|---------------|-------|
-| **Alert** | All variants | Background/Icon for respective severity. |
-| **Snackbar** | All variants | Background for respective severity. |
-| **Button** | All variants | When `color="..."`. |
-| **Badge** | Badge background | When `color="..."`. |
-| **Chip** | Background | When `color="..."`. |
+| Token | Semantic Meaning | Usage |
+|-------|------------------|-------|
+| `shadows[0]` | **Flat** | Seamless integration with parent surface (e.g., Accordion). |
+| `shadows[1]` | **Subtle Lift** | Buttons, Switch thumbs, low-priority cards. |
+| `shadows[2-4]` | **Card Level** | Standard content cards, creating distinct grouping. |
+| `shadows[8]` | **Dropdown/Menu** | Popovers, Select menus, Tooltips (floating above content). |
+| `shadows[16]` | **Drawer/Nav** | Navigation drawers sliding over content. |
+| `shadows[24]` | **Modal/Dialog** | Dialogs, Alerts (highest priority, blocking interaction). |
 
----
+## 5. Z-Index (Layering)
 
-## 🌫️ Neutrals & Surfaces
-
-### `palette.text`
-The foundation of readability.
-
-| Token | Component Usage | Notes |
-|-------|-----------------|-------|
-| `text.primary` | **Typography** (body1, h1-h6), **Input** (value), **CardHeader** (title), **List** (primary text), **Menu** (item text) | Default text color. |
-| `text.secondary` | **Typography** (body2, caption), **CardHeader** (subheader), **List** (secondary text), **Input** (placeholder, adornment), **Icon** (default) | Muted text color. |
-| `text.disabled` | **Button** (disabled), **Input** (disabled), **SelectionControls** (disabled label) | Inactive text. |
-
-### `palette.background`
-Defines the layers of the interface.
-
-| Token | Component Usage | Notes |
-|-------|-----------------|-------|
-| `background.default` | **CssBaseline** | The `<body>` background color. |
-| `background.paper` | **Paper**, **Card**, **Accordion**, **Dialog**, **Drawer**, **Menu**, **Popover**, **Autocomplete** (listbox) | The standard surface color. Critical for "Dark Mode" layers. |
-
-### `palette.action`
-Interactive state modifiers. Often used with `alpha()` or `opacity`.
-
-| Token | Component Usage | Notes |
-|-------|-----------------|-------|
-| `action.active` | **Icon**, **InputAdornment**, **ListItem** (icon) | Default color for active icons. |
-| `action.hover` | **Button**, **ListItem**, **TableRow**, **IconButton**, **Chip** | Background color on hover. |
-| `action.selected` | **ListItem**, **TableRow**, **MenuItem**, **Autocomplete** (option) | Background color for selected items. |
-| `action.disabled` | **Button**, **Input**, **SelectionControls** | Color for disabled elements (text/icon). |
-| `action.disabledBackground` | **Button** (contained), **Switch** (track), **Fab** | Background for disabled surfaces. |
-| `action.focus` | **Button**, **IconButton** | Keyboard focus overlay opacity/color. |
-
-### `palette.divider`
-Structural separation.
-
-| Component | Usage Context | Notes |
-|-----------|---------------|-------|
-| **Divider** | Line color | The primary usage. |
-| **Button** | Outlined border | Default border color for outlined variants. |
-| **Card** | Border | Default border color (if outlined). |
-| **Table** | Cell border | Bottom border of table cells. |
-| **List** | Divider | Separator lines. |
-| **Accordion** | Separator | Line between expanded accordions. |
-
----
-
-## 📐 Shape & Structure
-
-### `shape.borderRadius`
-Global roundness factor.
-
-| Component | Usage |
-|-----------|-------|
-| **Button** | Corner radius. |
-| **Card** | Corner radius. |
-| **Paper** | Corner radius (unless square). |
-| **Dialog** | Corner radius. |
-| **TextField** | Corner radius of `fieldset` (OutlinedInput). |
-| **Chip** | Corner radius (usually fully rounded or matched). |
-| **Alert** | Corner radius. |
-| **Skeleton** | Corner radius (rect/rounded variants). |
-| **Tooltip** | Corner radius. |
-
-### `shadows` (Array 0-24)
-Elevation and depth.
-
-| Component | Usage |
-|-----------|-------|
-| **Paper** | `elevation={1}` through `elevation={24}`. |
-| **Card** | Inherits Paper elevation (usually 1). |
-| **AppBar** | Usually `shadows[4]`. |
-| **Dialog** | High elevation (`shadows[24]`). |
-| **Drawer** | High elevation (`shadows[16]`). |
-| **Menu** | `shadows[8]`. |
-| **Popover** | `shadows[8]`. |
-| **Fab** | `shadows[6]` (default), `shadows[12]` (active). |
-| **Button** | Contained buttons use `shadows[2]` -> `shadows[4]` (hover). |
-
-### `typography`
-Font definitions.
-
-| Token | Component Usage |
-|-------|-----------------|
-| `typography.fontFamily` | **CssBaseline** (global), **Typography**, **Input**. |
-| `typography.button` | **Button**, **Tab**, **PaginationItem**. |
-| `typography.body1` | **Typography** (default), **ListItemText** (primary), **Input**. |
-| `typography.body2` | **Typography**, **ListItemText** (secondary), **Tooltip**, **Toast**. |
-| `typography.caption` | **HelperText**, **Badge**. |
-| `typography.h1` - `h6` | **Typography**, **DialogTitle**, **CardTitle**. |
-
-### `spacing`
-Layout scale (usually 4px or 8px base).
-
-| Component | Usage |
-|-----------|-------|
-| **Grid** | Gutter spacing. |
-| **Stack** | Gap spacing. |
-| **Container** | Padding. |
-| **Toolbar** | Height and padding. |
-| **Dialog** | Content padding. |
-| **Card** | Content padding. |
-| **List** | Item padding. |
-| **Button** | Padding (often calc based on spacing). |
-
-### `zIndex`
-Layering order.
-
-| Token | Component Usage |
-|-------|-----------------|
-| `zIndex.mobileStepper` | 1000 |
-| `zIndex.fab` | 1050 |
-| `zIndex.speedDial` | 1050 |
-| `zIndex.appBar` | 1100 |
-| `zIndex.drawer` | 1200 |
-| `zIndex.modal` | 1300 |
-| `zIndex.snackbar` | 1400 |
-| `zIndex.tooltip` | 1500 |
+| Token | Semantic Meaning | Usage |
+|-------|------------------|-------|
+| `mobileStepper` | **Inline Nav** | Bottom or inline steppers. |
+| `fab` | **Floating Action** | Floating Action Button (FAB). |
+| `speedDial` | **Expanded Action** | Speed dial actions. |
+| `appBar` | **Global Header** | The top application bar (sticky). |
+| `drawer` | **Side Navigation** | Drawers and sidebars. |
+| `modal` | **Blocking Overlay** | Dialogs, Lightboxes. |
+| `snackbar` | **Toast Notification** | Transient messages (bottom/top center). |
+| `tooltip` | **Hover Hint** | Small informational popups (highest standard layer). |

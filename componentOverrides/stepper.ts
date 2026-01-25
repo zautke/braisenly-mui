@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Stepper.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Stepper/Stepper.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiStepper = {
+const MuiStepper: Components<Theme>['MuiStepper'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       width: '100%',
@@ -15,7 +16,7 @@ const MuiStepper = {
   },
 };
 
-const MuiStepIcon = {
+const MuiStepIcon: Components<Theme>['MuiStepIcon'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       fontSize: 18,
@@ -30,13 +31,12 @@ const MuiStepIcon = {
       },
     }),
     text: ({ theme }) => ({
-      // Font family from theme
       fontFamily: theme.typography.fontFamily,
     }),
   },
 };
 
-const MuiStepLabel = {
+const MuiStepLabel: Components<Theme>['MuiStepLabel'] = {
   styleOverrides: {
     label: ({ theme }) => ({
       ...theme.typography.body2,
@@ -58,4 +58,4 @@ export default {
   MuiStepper,
   MuiStepIcon,
   MuiStepLabel,
-};
+} as Components<Theme>;

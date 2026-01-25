@@ -3211,3 +3211,10 @@ const MuiTooltip = {
 #### Screenshots
 - Before: [Pending]
 - After: [Pending]
+
+- **[2026-01-25] Final Component Refactor**:
+  - Converted all legacy `.js` overrides to strict TypeScript (`.ts`).
+  - Enforced `Components<Theme>` typing and `(theme.vars || theme)` pattern.
+  - Cleaned up `componentOverrides/index.ts`.
+  - Created `docs/semantic/SEM-theme-token-usage.md` semantic guide.
+  - Verified compilation with `pnpm tsc --noEmit` (Exit Code 0).

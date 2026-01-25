@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Tooltip.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Tooltip/Tooltip.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiTooltip = {
+const MuiTooltip: Components<Theme>['MuiTooltip'] = {
   styleOverrides: {
     tooltip: ({ theme }) => ({
       ...theme.typography.caption,
@@ -28,4 +29,4 @@ const MuiTooltip = {
 
 export default {
   MuiTooltip,
-};
+} as Components<Theme>;

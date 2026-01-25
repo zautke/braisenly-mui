@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Select.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Select/Select.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiSelect = {
+const MuiSelect: Components<Theme>['MuiSelect'] = {
   styleOverrides: {
     select: ({ theme }) => ({
       border: 'none',
@@ -32,4 +33,4 @@ const MuiSelect = {
 
 export default {
   MuiSelect,
-};
+} as Components<Theme>;

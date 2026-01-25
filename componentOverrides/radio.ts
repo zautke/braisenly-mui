@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Radio.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Radio/Radio.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiRadio = {
+const MuiRadio: Components<Theme>['MuiRadio'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       color: (theme.vars || theme).palette.text.secondary,
@@ -49,4 +50,4 @@ const MuiRadio = {
 
 export default {
   MuiRadio,
-};
+} as Components<Theme>;

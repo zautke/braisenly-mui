@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Tabs.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Tabs/Tabs.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiTabs = {
+const MuiTabs: Components<Theme>['MuiTabs'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -19,7 +20,7 @@ const MuiTabs = {
   },
 };
 
-const MuiTab = {
+const MuiTab: Components<Theme>['MuiTab'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       marginRight: theme.spacing(2),
@@ -60,4 +61,4 @@ const MuiTab = {
 export default {
   MuiTabs,
   MuiTab,
-};
+} as Components<Theme>;

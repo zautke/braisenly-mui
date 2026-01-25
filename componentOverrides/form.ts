@@ -4,24 +4,24 @@
  * Converted from themeStub anti-pattern to MUI v7 callback pattern.
  * Uses (theme.vars || theme) for CSS variables support.
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiFormControl = {};
+const MuiFormControl: Components<Theme>['MuiFormControl'] = {};
 
-const MuiFormLabel = {
+const MuiFormLabel: Components<Theme>['MuiFormLabel'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       '&.Mui-focused': {
-        color: (theme.vars || theme).palette.text.secondary, // Leave label color alone
+        color: (theme.vars || theme).palette.text.secondary,
       },
-
       '&.Mui-error': {
-        color: (theme.vars || theme).palette.error.main, // Error state uses error color
+        color: (theme.vars || theme).palette.error.main,
       },
     }),
   },
 };
 
-const MuiFormControlLabel = {
+const MuiFormControlLabel: Components<Theme>['MuiFormControlLabel'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       ...theme.typography.body2,
@@ -33,7 +33,7 @@ const MuiFormControlLabel = {
   },
 };
 
-const MuiFormHelperText = {
+const MuiFormHelperText: Components<Theme>['MuiFormHelperText'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       marginTop: 5,
@@ -47,4 +47,4 @@ export default {
   MuiFormLabel,
   MuiFormControlLabel,
   MuiFormHelperText,
-};
+} as Components<Theme>;

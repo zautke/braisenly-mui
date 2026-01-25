@@ -13,7 +13,7 @@ import dialog from './dialog';
 import divider from './divider';
 import drawer from './drawer';
 import accordion from './accordion';
-// import form from './form';
+import form from './form';
 import input from './input';
 import link from './link';
 import list from './list';
@@ -33,44 +33,45 @@ import table from './table';
 import tabs from './tabs';
 import toolbar from './toolbar';
 import tooltip from './tooltip';
-import { Components, Theme } from '@mui/material/styles';
+import svgIcon from './svg-icon';
 
 const allOverrides: any = {
-	...alert,
-    ...autocomplete,
-	...avatar,
-	...badge,
-    ...breadcrumbs,
-	...button,
-	...card,
-	...checkbox,
-	...chip,
-	...cssBaseLine,
-    ...dataGrid,
-	...dialog,
-    ...divider,
-	...drawer,
-	...accordion,
-	// ...form,
-	...input,
-    ...link,
-	...list,
-	...menu,
-    ...pagination,
-	...paper,
-	...popover,
-    ...progress,
-	...radio,
-	...select,
-    ...skeleton,
-    ...slider,
-	...snackbar,
-	...stepper,
-	...switchSelect,
-	...table,
-	...tabs,
-	...toolbar,
-	...tooltip,
+  ...alert,
+  ...autocomplete,
+  ...avatar,
+  ...badge,
+  ...breadcrumbs,
+  ...button,
+  ...card,
+  ...checkbox,
+  ...chip,
+  ...cssBaseLine,
+  ...dataGrid,
+  ...dialog,
+  ...divider,
+  ...drawer,
+  ...accordion,
+  ...form,
+  ...input,
+  ...link,
+  ...list,
+  ...menu,
+  ...pagination,
+  ...paper,
+  ...popover,
+  ...progress,
+  ...radio,
+  ...select,
+  ...skeleton,
+  ...slider,
+  ...snackbar,
+  ...stepper,
+  ...switchSelect,
+  ...table,
+  ...tabs,
+  ...toolbar,
+  ...tooltip,
+  ...svgIcon,
 };
 
 export const styleOverrides = allOverrides;

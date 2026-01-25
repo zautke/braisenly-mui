@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Snackbar.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Snackbar/Snackbar.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiSnackbar = {
+const MuiSnackbar: Components<Theme>['MuiSnackbar'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       [theme.breakpoints.up('sm')]: {
@@ -15,14 +16,14 @@ const MuiSnackbar = {
   },
 };
 
-const MuiSnackbarContent = {
+const MuiSnackbarContent: Components<Theme>['MuiSnackbarContent'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       [theme.breakpoints.up('sm')]: {
         borderRadius: (theme.vars || theme).shape.borderRadius,
       },
       color: (theme.vars || theme).palette.common.white,
-      backgroundColor: (theme.vars || theme).palette.text.primary, // Dark/Deep space mapping
+      backgroundColor: (theme.vars || theme).palette.text.primary,
       padding: theme.spacing(0, 0, 0, 2),
       boxShadow: (theme.vars || theme).shadows[6],
     }),
@@ -46,4 +47,4 @@ const MuiSnackbarContent = {
 export default {
   MuiSnackbar,
   MuiSnackbarContent,
-};
+} as Components<Theme>;

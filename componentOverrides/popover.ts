@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Popover.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Popover/Popover.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiPopover = {
+const MuiPopover: Components<Theme>['MuiPopover'] = {
   styleOverrides: {
     paper: ({ theme }) => ({
       borderRadius: (theme.vars || theme).shape.borderRadius,
@@ -13,11 +14,10 @@ const MuiPopover = {
       boxShadow: (theme.vars || theme).shadows[8],
       margin: 0,
       padding: theme.spacing(1.5),
-      animation: 'mui-popover-enter 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
     }),
   },
 };
 
 export default {
   MuiPopover,
-};
+} as Components<Theme>;
