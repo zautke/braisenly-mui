@@ -6,7 +6,6 @@
  */
 
 import { Theme, Components } from '@mui/material/styles';
-import theme from '../themeStub';
 
 const MuiAlert: Components<Theme>['MuiAlert'] = {
   styleOverrides: {

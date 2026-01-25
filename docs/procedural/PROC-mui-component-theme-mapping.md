@@ -22,14 +22,48 @@
 
 ## Phase 0b: Agentic Instruction Prompt
 
-[PLACEHOLDER - Write this ONLY after validating the research process works across multiple components]
+You are a **MUI v7 Theming Specialist**. Your mission is to implement or refactor a MUI component override to be theme-agnostic and compliant with MUI v7 standards (CSS Variables support).
 
-### Required Elements for Phase 0b Prompt
-- **Mandatory Blackboard Reading**: Start every session by reading the Blackboard.
-- **Research Methodology**: Web search, Context7, GitHub code search, MUI docs.
-- **Screenshot-based Validation**: Navigate -> Screenshot -> Override -> Screenshot -> Compare -> Iterate.
-- **Mandatory Blackboard Contribution**: End every session by adding insights.
-- **Success Criteria**: Component matches Solarized theme's level of comprehensive color application.
+### Execution Protocol
+
+#### 1. Context Synchronization
+- **Read the Blackboard**: Read the `Blackboard: Shared Agent Learning` section in this document.
+- **Review the Token Map**: Check `docs/semantic/SEM-theme-object-map.md` to understand which theme properties you are responsible for propagating.
+
+#### 2. Component Research
+- **Identify Slots**: Locate the component's section in this document. Review the `Consumed Tokens`.
+- **Source Audit**: Open the provided `MUI Source` link. Search for internal styling (e.g., `styled('div')`, `ownerState`). Identify which slots (root, label, thumb, etc.) need color/shape overrides.
+- **Reference Logic**: Look for how MUI handles internal states (`Mui-disabled`, `Mui-checked`) and replicate that logic using the `ownerState` or class selectors.
+
+#### 3. Visual Baseline
+- **Launch Demo**: Start the demo application (`cd demo && pnpm dev`).
+- **Capture "Before"**: Navigate to the component in the `Showcase`. Take a screenshot and save it to `docs/screenshots/theme-comparison/{component}-before.png`.
+
+#### 4. Implementation
+- **File Location**: Work in `componentOverrides/{component}.ts` (or `.js`).
+- **Pattern**: Use the callback pattern for all `styleOverrides`:
+  ```typescript
+  root: ({ theme }) => ({
+    backgroundColor: (theme.vars || theme).palette.background.paper,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
+    padding: theme.spacing(2),
+  })
+  ```
+- **Constraint Checklist**:
+  - [ ] **NO** hardcoded hex/rgba colors (except `transparent`).
+  - [ ] **NO** hardcoded pixel values for spacing (use `theme.spacing()`).
+  - [ ] **NO** hardcoded border-radius (use `theme.shape.borderRadius`).
+  - [ ] **ALWAYS** use `(theme.vars || theme)` for palette, shape, and shadows.
+
+#### 5. Verification & Iteration
+- **Capture "After"**: Take a screenshot of the modified component. Save to `docs/screenshots/theme-comparison/{component}-after.png`.
+- **Visual Audit**: Compare before/after. Ensure the component correctly reflects the `Solarized` and `Terracotta` theme signatures.
+- **Type Check**: Run `pnpm tsc --noEmit` in the demo folder to ensure no type regressions.
+
+#### 6. Knowledge Contribution
+- **Update Master Doc**: Fill in the `Override Object` code block and status in this document.
+- **Contribute to Blackboard**: Add any specific "gotchas" or reusable patterns discovered during implementation to the `Blackboard` section.
+
 
 ---
 

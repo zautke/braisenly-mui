@@ -1,33 +1,44 @@
-import theme from '../themeStub';
+/**
+ * Theme-Agnostic Form Control Overrides
+ *
+ * Converted from themeStub anti-pattern to MUI v7 callback pattern.
+ * Uses (theme.vars || theme) for CSS variables support.
+ */
 
 const MuiFormControl = {};
 
 const MuiFormLabel = {
-  root: {
-    '&$focused': {
-      color: theme.typography.inputLabel, // leave the label color alone
-    },
+  styleOverrides: {
+    root: ({ theme }) => ({
+      '&.Mui-focused': {
+        color: (theme.vars || theme).palette.text.secondary, // Leave label color alone
+      },
 
-    '&$error': {
-      color: theme.typography.inputLabel, // leave the label color alone
-    },
+      '&.Mui-error': {
+        color: (theme.vars || theme).palette.error.main, // Error state uses error color
+      },
+    }),
   },
-}
+};
 
 const MuiFormControlLabel = {
-  root: {
-    ...theme.typography.inputLabel,
-  },
-  label: {
-    ...theme.typography.inputLabel,
-    marginTop: -1,
+  styleOverrides: {
+    root: ({ theme }) => ({
+      ...theme.typography.body2,
+    }),
+    label: ({ theme }) => ({
+      ...theme.typography.body2,
+      marginTop: -1,
+    }),
   },
 };
 
 const MuiFormHelperText = {
-  root: {
-    marginTop: 5,
-    ...theme.typography.inputHelperText,
+  styleOverrides: {
+    root: ({ theme }) => ({
+      marginTop: 5,
+      ...theme.typography.caption,
+    }),
   },
 };
 
@@ -36,4 +47,4 @@ export default {
   MuiFormLabel,
   MuiFormControlLabel,
   MuiFormHelperText,
-}
+};

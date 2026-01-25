@@ -52,19 +52,19 @@ export const paletteOptionExtensions: PaletteOptions = {
     // contrastText: ""
   },
   warning: {
-    main: color.crimson,
+    main: color.burntorange, // #ff9800 - Distinct orange for warnings
     // light: "",
     // dark: "",
     // contrastText: ""
   },
   info: {
-    main: color.crimson,
+    main: color['blue-base'], // #0a71d0 - Standard blue for informational
     // light: "",
     // dark: "",
     // contrastText: ""
   },
   success: {
-    main: color.crimson,
+    main: color.applegreen, // #41bf60 - Green for success states
     // light: "",
     // dark: "",
     // contrastText: ""
@@ -73,16 +73,16 @@ export const paletteOptionExtensions: PaletteOptions = {
   tonalOffset: 0.2, //<-- default\
   contrastThreshold: 3.3,
   common: { // Partial<CommonColors>
-    black: color.XXXX,
-    white: color.XXXX
+    black: color.ink,   // #000000 - True black
+    white: color.white  // #ffffff - True white
   },
   grey: randomColor, //< ColorPartial>;
   text: { //Partial<TypeText>;
-    primary: color.XXXX,
-    secondary: color.XXXX,
-    disabled: color.XXXX
+    primary: color['ink-base'],   // #252d39 - Dark text for primary content
+    secondary: color['ink-light'], // #647492 - Muted text for secondary
+    disabled: color['grey-05']     // #8698ba - Light gray for disabled
   },
-  divider: color.XXXX,
+  divider: color['grey-04'], // #c8d2e6 - Subtle divider lines
   action: { // Partial<TypeAction>;
     // values  from default theme
     activatedOpacity: 0.12,

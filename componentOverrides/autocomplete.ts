@@ -5,7 +5,6 @@
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Autocomplete/Autocomplete.js
  */
 import { Theme, Components } from '@mui/material/styles';
-import theme from '../themeStub';
 
 const MuiAutocomplete: Components<Theme>['MuiAutocomplete'] = {
   styleOverrides: {
