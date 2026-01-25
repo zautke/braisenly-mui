@@ -4,18 +4,18 @@
  * Pattern Reference: MUI v7 Menu.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Menu/Menu.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiMenu = {
+const MuiMenu: Components<Theme>['MuiMenu'] = {
   styleOverrides: {
     paper: ({ theme }) => ({
       padding: 0,
-      animation: 'mui-menu-enter 0.2s ease-out',
       transformOrigin: 'top left',
     }),
   },
 };
 
-const MuiMenuItem = {
+const MuiMenuItem: Components<Theme>['MuiMenuItem'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       ...theme.typography.body2,
@@ -43,4 +43,4 @@ const MuiMenuItem = {
 export default {
   MuiMenu,
   MuiMenuItem,
-};
+} as Components<Theme>;

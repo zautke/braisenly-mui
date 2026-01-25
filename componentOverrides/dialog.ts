@@ -4,20 +4,18 @@
  * Pattern Reference: MUI v7 Dialog.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Dialog/Dialog.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiDialog = {
+const MuiDialog: Components<Theme>['MuiDialog'] = {
   styleOverrides: {
     paper: ({ theme }) => ({
       boxShadow: (theme.vars || theme).shadows[24],
       borderRadius: (theme.vars || theme).shape.borderRadius,
-      
-      // Entrance animation
-      animation: 'mui-dialog-enter 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     }),
   },
 };
 
-const MuiDialogTitle = {
+const MuiDialogTitle: Components<Theme>['MuiDialogTitle'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       padding: theme.spacing(1.5, 2),
@@ -29,7 +27,7 @@ const MuiDialogTitle = {
   },
 };
 
-const MuiDialogContent = {
+const MuiDialogContent: Components<Theme>['MuiDialogContent'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       padding: theme.spacing(3, 2, 2.5, 2),
@@ -40,7 +38,7 @@ const MuiDialogContent = {
   },
 };
 
-const MuiDialogContentText = {
+const MuiDialogContentText: Components<Theme>['MuiDialogContentText'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       ...theme.typography.body1,
@@ -49,7 +47,7 @@ const MuiDialogContentText = {
   },
 };
 
-const MuiDialogActions = {
+const MuiDialogActions: Components<Theme>['MuiDialogActions'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       margin: 0,
@@ -65,4 +63,4 @@ export default {
   MuiDialogContent,
   MuiDialogContentText,
   MuiDialogActions,
-};
+} as Components<Theme>;

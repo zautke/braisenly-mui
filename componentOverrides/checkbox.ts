@@ -4,13 +4,16 @@
  * Converted from themeStub anti-pattern to MUI v7 callback pattern.
  * Uses (theme.vars || theme) for CSS variables support.
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiCheckbox = {
+const MuiCheckbox: Components<Theme>['MuiCheckbox'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       color: (theme.vars || theme).palette.text.secondary,
       backgroundColor: 'transparent',
-      transition: 'color 0.2s ease-in-out, transform 0.2s ease-in-out',
+      transition: theme.transitions.create(['color', 'transform'], {
+        duration: theme.transitions.duration.shortest,
+      }),
 
       '&:hover': {
         color: (theme.vars || theme).palette.primary.light,
@@ -19,14 +22,13 @@ const MuiCheckbox = {
 
       '&:active': {
         color: (theme.vars || theme).palette.primary.dark,
-        transform: 'scale(0.95)', // Subtle press effect
+        transform: 'scale(0.95)',
       },
 
       '& svg': {
         fontSize: 16,
       },
 
-      // Animate the check when checked
       '&.Mui-checked': {
         color: (theme.vars || theme).palette.primary.main,
         backgroundColor: 'transparent',
@@ -37,11 +39,6 @@ const MuiCheckbox = {
         '&:active': {
           color: (theme.vars || theme).palette.primary.dark,
         },
-
-        // Animate the internal SVG path
-        '& svg path': {
-          animation: 'MuiCheckbox-bounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-        }
       },
 
       '&.Mui-disabled': {
@@ -54,4 +51,4 @@ const MuiCheckbox = {
 
 export default {
   MuiCheckbox,
-};
+} as Components<Theme>;

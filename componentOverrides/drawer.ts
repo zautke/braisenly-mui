@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Drawer.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Drawer/Drawer.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiDrawer = {
+const MuiDrawer: Components<Theme>['MuiDrawer'] = {
   styleOverrides: {
     paper: ({ theme }) => ({
       // Gradient background override - mapped to primary colors
@@ -39,4 +40,4 @@ const MuiDrawer = {
 
 export default {
   MuiDrawer,
-};
+} as Components<Theme>;

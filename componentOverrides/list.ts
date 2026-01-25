@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 List.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/List/List.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiList = {
+const MuiList: Components<Theme>['MuiList'] = {
   styleOverrides: {
     padding: ({ theme }) => ({
       paddingTop: theme.spacing(0.5),
@@ -14,7 +15,7 @@ const MuiList = {
   },
 };
 
-const MuiListItem = {
+const MuiListItem: Components<Theme>['MuiListItem'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       transition: theme.transitions.create('background-color', { duration: 150 }),
@@ -31,7 +32,7 @@ const MuiListItem = {
   },
 };
 
-const MuiListItemButton = {
+const MuiListItemButton: Components<Theme>['MuiListItemButton'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       transition: theme.transitions.create('background-color', { duration: 150 }),
@@ -48,7 +49,7 @@ const MuiListItemButton = {
   },
 };
 
-const MuiListItemText = {
+const MuiListItemText: Components<Theme>['MuiListItemText'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       paddingRight: 0,
@@ -69,7 +70,7 @@ const MuiListItemText = {
   }
 };
 
-const MuiListItemIcon = {
+const MuiListItemIcon: Components<Theme>['MuiListItemIcon'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       marginRight: 0,
@@ -83,7 +84,7 @@ const MuiListItemIcon = {
   }
 };
 
-const MuiListSubheader = {
+const MuiListSubheader: Components<Theme>['MuiListSubheader'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       [theme.breakpoints.up('sm')]: {
@@ -103,4 +104,4 @@ export default {
   MuiListItemIcon,
   MuiListItemText,
   MuiListSubheader,
-};
+} as Components<Theme>;
