@@ -4,8 +4,9 @@
  * Pattern Reference: MUI v7 Paper.js
  * @see https://github.com/mui/material-ui/blob/v7.3.7/packages/mui-material/src/Paper/Paper.js
  */
+import { Theme, Components } from '@mui/material/styles';
 
-const MuiPaper = {
+const MuiPaper: Components<Theme>['MuiPaper'] = {
   styleOverrides: {
     root: ({ theme }) => ({
       backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -19,4 +20,4 @@ const MuiPaper = {
 
 export default {
   MuiPaper,
-};
+} as Components<Theme>;
