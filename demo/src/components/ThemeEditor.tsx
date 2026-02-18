@@ -2,6 +2,8 @@
  * ThemeEditor - Live interactive theme customization sidebar
  * Full theme structure exposed: palette (light/main/dark), background (bk1-4), colorGuide, ext
  * Uses Victor Mono NFM for a code-editor aesthetic
+ *
+ * Tabs: Quick | Full Theme | JSON (with CodeMirror, validity indicator, bidirectional sync)
  */
 import React, { useState } from 'react';
 import {
@@ -20,6 +22,8 @@ import {
   Collapse,
   Tabs,
   Tab,
+  Switch,
+  TextField,
 } from '@mui/material';
 import {
   ChevronLeft as ChevronLeftIcon,
@@ -37,6 +41,7 @@ import {
 } from '@mui/icons-material';
 import { useThemeEditor, type PaletteColorOverride } from '../ThemeEditorContext';
 import { EditableText } from './EditableText';
+import { ThemeJsonEditor } from './ThemeJsonEditor';
 
 const EDITOR_WIDTH = 380;
 
@@ -193,8 +198,18 @@ const ColorGuideSection: React.FC<ColorGuideProps> = ({ colors, onChange }) => {
   );
 };
 
+// Helper: validity indicator dot color based on validation status
+const getValidityColor = (status: string) =>
+  status === 'valid'
+    ? 'success.main'
+    : status === 'invalid_json'
+      ? 'error.main'
+      : status === 'invalid_schema'
+        ? 'warning.main'
+        : 'text.disabled'; // validating
+
 export const ThemeEditor: React.FC = () => {
-  const { isOpen, setIsOpen, overrides, updateOverrides, resetOverrides, exportTheme } = useThemeEditor();
+  const { isOpen, setIsOpen, overrides, updateOverrides, resetOverrides, exportTheme, validationStatus } = useThemeEditor();
   const [activeTab, setActiveTab] = useState(0);
 
   const handleCopyTheme = () => {
@@ -251,15 +266,28 @@ export const ThemeEditor: React.FC = () => {
             borderLeft: '1px solid',
             borderColor: 'divider',
             bgcolor: 'background.paper',
+            display: 'flex',
+            flexDirection: 'column',
           },
         }}
       >
-        {/* Header with Title and Tabs */}
+        {/* Header with Title, Validity Indicator, and Tabs */}
         <Box sx={{ borderBottom: '1px solid', borderColor: 'divider' }}>
           <Box sx={{ px: 1.5, pt: 1.5, pb: 0.5 }}>
             <Typography variant="subtitle1" sx={{ fontFamily: editorFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
               <PaletteIcon fontSize="small" />
               Theme Editor
+              <Box
+                sx={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: '50%',
+                  ml: 'auto',
+                  bgcolor: getValidityColor(validationStatus),
+                  transition: 'background-color 0.3s ease',
+                  ...(validationStatus === 'validating' ? { opacity: 0.5 } : {}),
+                }}
+              />
             </Typography>
           </Box>
           <Tabs
@@ -280,224 +308,316 @@ export const ThemeEditor: React.FC = () => {
           >
             <Tab label="Quick" />
             <Tab label="Full Theme" />
+            <Tab
+              label={
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                  JSON
+                  <Box
+                    sx={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: '50%',
+                      bgcolor: getValidityColor(validationStatus),
+                      transition: 'background-color 0.3s ease',
+                      ...(validationStatus === 'validating' ? { opacity: 0.5 } : {}),
+                    }}
+                  />
+                </Box>
+              }
+            />
           </Tabs>
         </Box>
 
-        {/* Scrollable Content */}
-        <Box sx={{ flex: 1, overflow: 'auto', p: 0 }}>
+        {/* Scrollable Content — flex container for CodeMirror when JSON tab is active */}
+        <Box sx={{ flex: 1, overflow: activeTab === 2 ? 'hidden' : 'auto', p: 0, display: 'flex', flexDirection: 'column' }}>
           {/* === QUICK TAB (Tab 0) - Simplified color swatches === */}
-          {activeTab === 0 && (
-            <Box>
-              <Box sx={{ px: 2, py: 1.5 }}>
-                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem' }}>
-                  Primary Colors
-                </Typography>
-                <ColorSwatch label="Primary" value={overrides.primary.main} onChange={(c) => updateOverrides({ primary: { ...overrides.primary, main: c } })} />
-                <ColorSwatch label="Secondary" value={overrides.secondary.main} onChange={(c) => updateOverrides({ secondary: { ...overrides.secondary, main: c } })} />
+          <Box sx={{ display: activeTab === 0 ? 'block' : 'none' }}>
+            <Box sx={{ px: 2, py: 1.5 }}>
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem' }}>
+                Primary Colors
+              </Typography>
+              <ColorSwatch label="Primary" value={overrides.primary.main} onChange={(c) => updateOverrides({ primary: { ...overrides.primary, main: c } })} />
+              <ColorSwatch label="Secondary" value={overrides.secondary.main} onChange={(c) => updateOverrides({ secondary: { ...overrides.secondary, main: c } })} />
 
-                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
-                  Semantic Colors
-                </Typography>
-                <ColorSwatch label="Success" value={overrides.success.main} onChange={(c) => updateOverrides({ success: { ...overrides.success, main: c } })} />
-                <ColorSwatch label="Warning" value={overrides.warning.main} onChange={(c) => updateOverrides({ warning: { ...overrides.warning, main: c } })} />
-                <ColorSwatch label="Error" value={overrides.error.main} onChange={(c) => updateOverrides({ error: { ...overrides.error, main: c } })} />
-                <ColorSwatch label="Info" value={overrides.info.main} onChange={(c) => updateOverrides({ info: { ...overrides.info, main: c } })} />
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
+                Semantic Colors
+              </Typography>
+              <ColorSwatch label="Success" value={overrides.success.main} onChange={(c) => updateOverrides({ success: { ...overrides.success, main: c } })} />
+              <ColorSwatch label="Warning" value={overrides.warning.main} onChange={(c) => updateOverrides({ warning: { ...overrides.warning, main: c } })} />
+              <ColorSwatch label="Error" value={overrides.error.main} onChange={(c) => updateOverrides({ error: { ...overrides.error, main: c } })} />
+              <ColorSwatch label="Info" value={overrides.info.main} onChange={(c) => updateOverrides({ info: { ...overrides.info, main: c } })} />
 
-                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
-                  Background
-                </Typography>
-                <ColorSwatch label="Default BG" value={overrides.background.default} onChange={(c) => updateOverrides({ background: { ...overrides.background, default: c } })} />
-                <ColorSwatch label="Paper BG" value={overrides.background.paper} onChange={(c) => updateOverrides({ background: { ...overrides.background, paper: c } })} />
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
+                Background
+              </Typography>
+              <ColorSwatch label="Default BG" value={overrides.background.default} onChange={(c) => updateOverrides({ background: { ...overrides.background, default: c } })} />
+              <ColorSwatch label="Paper BG" value={overrides.background.paper} onChange={(c) => updateOverrides({ background: { ...overrides.background, paper: c } })} />
+              <ColorSwatch label="Divider" value={overrides.dividerColor} onChange={(c) => updateOverrides({ dividerColor: c })} />
 
-                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
-                  Text
-                </Typography>
-                <ColorSwatch label="Primary Text" value={overrides.text.primary} onChange={(c) => updateOverrides({ text: { ...overrides.text, primary: c } })} />
-                <ColorSwatch label="Secondary Text" value={overrides.text.secondary} onChange={(c) => updateOverrides({ text: { ...overrides.text, secondary: c } })} />
-              </Box>
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
+                Text
+              </Typography>
+              <ColorSwatch label="Primary Text" value={overrides.text.primary} onChange={(c) => updateOverrides({ text: { ...overrides.text, primary: c } })} />
+              <ColorSwatch label="Secondary Text" value={overrides.text.secondary} onChange={(c) => updateOverrides({ text: { ...overrides.text, secondary: c } })} />
+            </Box>
 
-              <Divider />
+            <Divider />
 
-              {/* Shape */}
-              <Box sx={{ px: 2, py: 1.5 }}>
-                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem' }}>
-                  Shape
-                </Typography>
-                <SliderControl label="Border Radius" value={overrides.borderRadius} min={0} max={24} unit="px" onChange={(v) => updateOverrides({ borderRadius: v })} />
-              </Box>
+            {/* Shape */}
+            <Box sx={{ px: 2, py: 1.5 }}>
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem' }}>
+                Shape
+              </Typography>
+              <SliderControl label="Border Radius" value={overrides.borderRadius} min={0} max={24} unit="px" onChange={(v) => updateOverrides({ borderRadius: v })} />
+            </Box>
 
-              <Divider />
+            <Divider />
 
-              {/* Spacing */}
-              <Box sx={{ px: 2, py: 1.5 }}>
-                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem' }}>
-                  Spacing
-                </Typography>
-                <SliderControl label="Base Unit" value={overrides.spacingUnit} min={4} max={16} unit="px" onChange={(v) => updateOverrides({ spacingUnit: v })} />
-              </Box>
+            {/* Spacing */}
+            <Box sx={{ px: 2, py: 1.5 }}>
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem' }}>
+                Spacing
+              </Typography>
+              <SliderControl label="Base Unit" value={overrides.spacingUnit} min={4} max={16} unit="px" onChange={(v) => updateOverrides({ spacingUnit: v })} />
+            </Box>
 
-              <Divider />
+            <Divider />
 
-              {/* Typography */}
-              <Box sx={{ px: 2, py: 1.5 }}>
-                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem' }}>
-                  Typography
-                </Typography>
-                <SliderControl label="Font Size" value={overrides.fontSize} min={12} max={18} unit="px" onChange={(v) => updateOverrides({ fontSize: v })} />
-                <SliderControl label="Font Weight" value={overrides.fontWeightRegular} min={300} max={600} step={100} onChange={(v) => updateOverrides({ fontWeightRegular: v })} />
+            {/* Typography */}
+            <Box sx={{ px: 2, py: 1.5 }}>
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem' }}>
+                Typography
+              </Typography>
+              <SliderControl label="Font Size" value={overrides.fontSize} min={12} max={18} unit="px" onChange={(v) => updateOverrides({ fontSize: v })} />
+              <SliderControl label="Font Weight" value={overrides.fontWeightRegular} min={300} max={600} step={100} onChange={(v) => updateOverrides({ fontWeightRegular: v })} />
+
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
+                Font
+              </Typography>
+              <TextField
+                size="small"
+                fullWidth
+                value={overrides.fontFamily}
+                onChange={(e) => updateOverrides({ fontFamily: e.target.value })}
+                placeholder="Font family..."
+                sx={{ mb: 1, '& input': { fontFamily: editorFont, fontSize: '0.65rem' } }}
+              />
+
+              <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
+                Mode
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, color: overrides.mode === 'light' ? 'text.primary' : 'text.disabled' }}>Light</Typography>
+                <Switch
+                  size="small"
+                  checked={overrides.mode === 'dark'}
+                  onChange={(e) => updateOverrides({ mode: e.target.checked ? 'dark' : 'light' })}
+                />
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, color: overrides.mode === 'dark' ? 'text.primary' : 'text.disabled' }}>Dark</Typography>
               </Box>
             </Box>
-          )}
+          </Box>
 
           {/* === FULL THEME TAB (Tab 1) - Expanded structure === */}
-          {activeTab === 1 && (
-            <Box>
-              {/* Palette Colors Section */}
-              <Accordion defaultExpanded disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
-                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <PaletteIcon sx={{ fontSize: 16 }} /> Palette Colors
+          <Box sx={{ display: activeTab === 1 ? 'block' : 'none' }}>
+            {/* Palette Colors Section */}
+            <Accordion defaultExpanded disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <PaletteIcon sx={{ fontSize: 16 }} /> Palette Colors
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                <PaletteColorGroup name="primary" color={overrides.primary} onChange={updatePaletteColor('primary')} />
+                <PaletteColorGroup name="secondary" color={overrides.secondary} onChange={updatePaletteColor('secondary')} />
+                <PaletteColorGroup name="success" color={overrides.success} onChange={updatePaletteColor('success')} />
+                <PaletteColorGroup name="warning" color={overrides.warning} onChange={updatePaletteColor('warning')} />
+                <PaletteColorGroup name="error" color={overrides.error} onChange={updatePaletteColor('error')} />
+                <PaletteColorGroup name="info" color={overrides.info} onChange={updatePaletteColor('info')} />
+              </AccordionDetails>
+            </Accordion>
+
+            <Divider />
+
+            {/* Background Section (with bk1-bk4) */}
+            <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <PaletteIcon sx={{ fontSize: 16 }} /> Background
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                <ColorSwatch label="default" value={overrides.background.default} onChange={(c) => updateOverrides({ background: { ...overrides.background, default: c } })} />
+                <ColorSwatch label="paper" value={overrides.background.paper} onChange={(c) => updateOverrides({ background: { ...overrides.background, paper: c } })} />
+                <ColorSwatch label="divider" value={overrides.dividerColor} onChange={(c) => updateOverrides({ dividerColor: c })} />
+                <Typography variant="overline" sx={{ fontFamily: editorFont, fontSize: '0.55rem', color: 'text.disabled', mt: 1, display: 'block' }}>
+                  Augmented (bk1-bk4)
+                </Typography>
+                <ColorSwatch label="bk1" value={overrides.background.bk1 || '#f0f0f0'} onChange={(c) => updateOverrides({ background: { ...overrides.background, bk1: c } })} />
+                <ColorSwatch label="bk2" value={overrides.background.bk2 || '#e0e0e0'} onChange={(c) => updateOverrides({ background: { ...overrides.background, bk2: c } })} />
+                <ColorSwatch label="bk3" value={overrides.background.bk3 || '#d0d0d0'} onChange={(c) => updateOverrides({ background: { ...overrides.background, bk3: c } })} />
+                <ColorSwatch label="bk4" value={overrides.background.bk4 || '#c0c0c0'} onChange={(c) => updateOverrides({ background: { ...overrides.background, bk4: c } })} />
+              </AccordionDetails>
+            </Accordion>
+
+            <Divider />
+
+            {/* Text Section */}
+            <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <TextFieldsIcon sx={{ fontSize: 16 }} /> Text
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                <ColorSwatch label="primary" value={overrides.text.primary} onChange={(c) => updateOverrides({ text: { ...overrides.text, primary: c } })} />
+                <ColorSwatch label="secondary" value={overrides.text.secondary} onChange={(c) => updateOverrides({ text: { ...overrides.text, secondary: c } })} />
+                {overrides.text.disabled && (
+                  <ColorSwatch label="disabled" value={overrides.text.disabled} onChange={(c) => updateOverrides({ text: { ...overrides.text, disabled: c } })} />
+                )}
+              </AccordionDetails>
+            </Accordion>
+
+            <Divider />
+
+            {/* ColorGuide Section */}
+            <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <ColorLensIcon sx={{ fontSize: 16 }} /> ColorGuide
+                  <Typography component="span" sx={{ fontFamily: editorFont, fontSize: '0.55rem', color: 'text.disabled', ml: 0.5 }}>
+                    ({Object.keys(overrides.colorGuide).length})
                   </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ px: 2, pt: 0 }}>
-                  <PaletteColorGroup name="primary" color={overrides.primary} onChange={updatePaletteColor('primary')} />
-                  <PaletteColorGroup name="secondary" color={overrides.secondary} onChange={updatePaletteColor('secondary')} />
-                  <PaletteColorGroup name="success" color={overrides.success} onChange={updatePaletteColor('success')} />
-                  <PaletteColorGroup name="warning" color={overrides.warning} onChange={updatePaletteColor('warning')} />
-                  <PaletteColorGroup name="error" color={overrides.error} onChange={updatePaletteColor('error')} />
-                  <PaletteColorGroup name="info" color={overrides.info} onChange={updatePaletteColor('info')} />
-                </AccordionDetails>
-              </Accordion>
-
-              <Divider />
-
-              {/* Background Section (with bk1-bk4) */}
-              <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
-                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <PaletteIcon sx={{ fontSize: 16 }} /> Background
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                {Object.keys(overrides.colorGuide).length > 0 ? (
+                  <ColorGuideSection colors={overrides.colorGuide} onChange={updateColorGuide} />
+                ) : (
+                  <Typography sx={{ fontFamily: editorFont, fontSize: '0.6rem', color: 'text.disabled', fontStyle: 'italic' }}>
+                    No colorGuide defined in theme
                   </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ px: 2, pt: 0 }}>
-                  <ColorSwatch label="default" value={overrides.background.default} onChange={(c) => updateOverrides({ background: { ...overrides.background, default: c } })} />
-                  <ColorSwatch label="paper" value={overrides.background.paper} onChange={(c) => updateOverrides({ background: { ...overrides.background, paper: c } })} />
-                  <Typography variant="overline" sx={{ fontFamily: editorFont, fontSize: '0.55rem', color: 'text.disabled', mt: 1, display: 'block' }}>
-                    Augmented (bk1-bk4)
+                )}
+              </AccordionDetails>
+            </Accordion>
+
+            <Divider />
+
+            {/* ext Section */}
+            <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <ExtensionIcon sx={{ fontSize: 16 }} /> ext (custom)
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                {Object.keys(overrides.ext || {}).length > 0 ? (
+                  <Box component="pre" sx={{ fontFamily: editorFont, fontSize: '0.55rem', color: 'text.secondary', m: 0, overflow: 'auto' }}>
+                    {JSON.stringify(overrides.ext, null, 2)}
+                  </Box>
+                ) : (
+                  <Typography sx={{ fontFamily: editorFont, fontSize: '0.6rem', color: 'text.disabled', fontStyle: 'italic' }}>
+                    No ext properties defined
                   </Typography>
-                  <ColorSwatch label="bk1" value={overrides.background.bk1 || '#f0f0f0'} onChange={(c) => updateOverrides({ background: { ...overrides.background, bk1: c } })} />
-                  <ColorSwatch label="bk2" value={overrides.background.bk2 || '#e0e0e0'} onChange={(c) => updateOverrides({ background: { ...overrides.background, bk2: c } })} />
-                  <ColorSwatch label="bk3" value={overrides.background.bk3 || '#d0d0d0'} onChange={(c) => updateOverrides({ background: { ...overrides.background, bk3: c } })} />
-                  <ColorSwatch label="bk4" value={overrides.background.bk4 || '#c0c0c0'} onChange={(c) => updateOverrides({ background: { ...overrides.background, bk4: c } })} />
-                </AccordionDetails>
-              </Accordion>
+                )}
+              </AccordionDetails>
+            </Accordion>
 
-              <Divider />
+            <Divider />
 
-              {/* Text Section */}
-              <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
-                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <TextFieldsIcon sx={{ fontSize: 16 }} /> Text
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ px: 2, pt: 0 }}>
-                  <ColorSwatch label="primary" value={overrides.text.primary} onChange={(c) => updateOverrides({ text: { ...overrides.text, primary: c } })} />
-                  <ColorSwatch label="secondary" value={overrides.text.secondary} onChange={(c) => updateOverrides({ text: { ...overrides.text, secondary: c } })} />
-                  {overrides.text.disabled && (
-                    <ColorSwatch label="disabled" value={overrides.text.disabled} onChange={(c) => updateOverrides({ text: { ...overrides.text, disabled: c } })} />
-                  )}
-                </AccordionDetails>
-              </Accordion>
+            {/* Shape Section */}
+            <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <RoundedIcon sx={{ fontSize: 16 }} /> Shape
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                <SliderControl label="borderRadius" value={overrides.borderRadius} min={0} max={24} unit="px" onChange={(v) => updateOverrides({ borderRadius: v })} />
+              </AccordionDetails>
+            </Accordion>
 
-              <Divider />
+            <Divider />
 
-              {/* ColorGuide Section */}
-              <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
-                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <ColorLensIcon sx={{ fontSize: 16 }} /> ColorGuide
-                    <Typography component="span" sx={{ fontFamily: editorFont, fontSize: '0.55rem', color: 'text.disabled', ml: 0.5 }}>
-                      ({Object.keys(overrides.colorGuide).length})
-                    </Typography>
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ px: 2, pt: 0 }}>
-                  {Object.keys(overrides.colorGuide).length > 0 ? (
-                    <ColorGuideSection colors={overrides.colorGuide} onChange={updateColorGuide} />
-                  ) : (
-                    <Typography sx={{ fontFamily: editorFont, fontSize: '0.6rem', color: 'text.disabled', fontStyle: 'italic' }}>
-                      No colorGuide defined in theme
-                    </Typography>
-                  )}
-                </AccordionDetails>
-              </Accordion>
+            {/* Spacing Section */}
+            <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <SpaceBarIcon sx={{ fontSize: 16 }} /> Spacing
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                <SliderControl label="unit" value={overrides.spacingUnit} min={4} max={16} unit="px" onChange={(v) => updateOverrides({ spacingUnit: v })} />
+              </AccordionDetails>
+            </Accordion>
 
-              <Divider />
+            <Divider />
 
-              {/* ext Section */}
-              <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
-                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <ExtensionIcon sx={{ fontSize: 16 }} /> ext (custom)
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ px: 2, pt: 0 }}>
-                  {Object.keys(overrides.ext || {}).length > 0 ? (
-                    <Box component="pre" sx={{ fontFamily: editorFont, fontSize: '0.55rem', color: 'text.secondary', m: 0, overflow: 'auto' }}>
-                      {JSON.stringify(overrides.ext, null, 2)}
-                    </Box>
-                  ) : (
-                    <Typography sx={{ fontFamily: editorFont, fontSize: '0.6rem', color: 'text.disabled', fontStyle: 'italic' }}>
-                      No ext properties defined
-                    </Typography>
-                  )}
-                </AccordionDetails>
-              </Accordion>
+            {/* Typography Section */}
+            <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <TextFieldsIcon sx={{ fontSize: 16 }} /> Typography
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                <SliderControl label="fontSize" value={overrides.fontSize} min={12} max={18} unit="px" onChange={(v) => updateOverrides({ fontSize: v })} />
+                <SliderControl label="fontWeightRegular" value={overrides.fontWeightRegular} min={300} max={600} step={100} onChange={(v) => updateOverrides({ fontWeightRegular: v })} />
+                <SliderControl label="fontWeightBold" value={overrides.fontWeightBold} min={300} max={900} step={100} onChange={(v) => updateOverrides({ fontWeightBold: v })} />
 
-              <Divider />
+                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
+                  Font Family
+                </Typography>
+                <TextField
+                  size="small"
+                  fullWidth
+                  value={overrides.fontFamily}
+                  onChange={(e) => updateOverrides({ fontFamily: e.target.value })}
+                  placeholder="Font family..."
+                  sx={{ mb: 1, '& input': { fontFamily: editorFont, fontSize: '0.65rem' } }}
+                />
 
-              {/* Shape Section */}
-              <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
-                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <RoundedIcon sx={{ fontSize: 16 }} /> Shape
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ px: 2, pt: 0 }}>
-                  <SliderControl label="borderRadius" value={overrides.borderRadius} min={0} max={24} unit="px" onChange={(v) => updateOverrides({ borderRadius: v })} />
-                </AccordionDetails>
-              </Accordion>
+                <Typography variant="overline" sx={{ fontFamily: editorFont, color: 'text.disabled', fontSize: '0.6rem', mt: 1.5, display: 'block' }}>
+                  Font Family (Headings)
+                </Typography>
+                <TextField
+                  size="small"
+                  fullWidth
+                  value={overrides.fontFamilyHeading}
+                  onChange={(e) => updateOverrides({ fontFamilyHeading: e.target.value })}
+                  placeholder="Heading font family..."
+                  sx={{ mb: 1, '& input': { fontFamily: editorFont, fontSize: '0.65rem' } }}
+                />
+              </AccordionDetails>
+            </Accordion>
 
-              <Divider />
+            <Divider />
 
-              {/* Spacing Section */}
-              <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
-                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <SpaceBarIcon sx={{ fontSize: 16 }} /> Spacing
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ px: 2, pt: 0 }}>
-                  <SliderControl label="unit" value={overrides.spacingUnit} min={4} max={16} unit="px" onChange={(v) => updateOverrides({ spacingUnit: v })} />
-                </AccordionDetails>
-              </Accordion>
+            {/* Mode Section */}
+            <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
+                <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <PaletteIcon sx={{ fontSize: 16 }} /> Mode
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ px: 2, pt: 0 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, color: overrides.mode === 'light' ? 'text.primary' : 'text.disabled' }}>Light</Typography>
+                  <Switch
+                    size="small"
+                    checked={overrides.mode === 'dark'}
+                    onChange={(e) => updateOverrides({ mode: e.target.checked ? 'dark' : 'light' })}
+                  />
+                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, color: overrides.mode === 'dark' ? 'text.primary' : 'text.disabled' }}>Dark</Typography>
+                </Box>
+              </AccordionDetails>
+            </Accordion>
+          </Box>
 
-              <Divider />
-
-              {/* Typography Section */}
-              <Accordion disableGutters elevation={0} sx={{ '&::before': { display: 'none' } }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ px: 2, minHeight: 40, '& .MuiAccordionSummary-content': { my: 1 } }}>
-                  <Typography sx={{ fontFamily: editorFont, fontSize: smallFont, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <TextFieldsIcon sx={{ fontSize: 16 }} /> Typography
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails sx={{ px: 2, pt: 0 }}>
-                  <SliderControl label="fontSize" value={overrides.fontSize} min={12} max={18} unit="px" onChange={(v) => updateOverrides({ fontSize: v })} />
-                  <SliderControl label="fontWeightRegular" value={overrides.fontWeightRegular} min={300} max={600} step={100} onChange={(v) => updateOverrides({ fontWeightRegular: v })} />
-                </AccordionDetails>
-              </Accordion>
-            </Box>
-          )}
+          {/* === JSON TAB (Tab 2) - CodeMirror editor === */}
+          <Box sx={{ display: activeTab === 2 ? 'flex' : 'none', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            <ThemeJsonEditor />
+          </Box>
         </Box>
 
         {/* Footer Actions */}
@@ -515,4 +635,3 @@ export const ThemeEditor: React.FC = () => {
     </>
   );
 };
-

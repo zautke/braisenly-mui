@@ -70,7 +70,7 @@ export const ThemeProviderWrapper: React.FC<{ children: React.ReactNode }> = ({ 
 
   return (
     <ThemeContext.Provider value={{ currentTheme: themeName, setTheme: setThemeName, baseTheme }}>
-      <ThemeEditorProvider baseTheme={baseTheme}>
+      <ThemeEditorProvider baseTheme={baseTheme} themeName={themeName}>
         <ThemeApplier>
           {children}
         </ThemeApplier>

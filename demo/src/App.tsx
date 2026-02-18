@@ -17,7 +17,7 @@ import {
 } from '@mui/material';
 import { Palette as PaletteIcon } from '@mui/icons-material';
 
-const EDITOR_WIDTH = 360;
+const EDITOR_WIDTH = 380;
 
 const ThemeControls = () => {
   const { currentTheme, setTheme } = useThemeSwitcher();
